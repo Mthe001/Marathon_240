@@ -1,0 +1,52 @@
+import { createBrowserRouter } from "react-router-dom";
+import MainLayout from "../layout/MainLayout";
+import Home from "../pages/Home/Home";
+import SignIn from "../pages/SignIn/SignIn";
+import Register from "../pages/Register/Register";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
+
+import AllMarathon from "../pages/AllMarathon/AllMarathon";
+import MarathonDetails from "../pages/MarathonDetails/MarathonDetails";
+import AddMarathonForm from "../pages/AddMarathonForm/AddMarathonForm";
+
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <MainLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: "/",
+                element: <Home />,
+
+            },
+            {
+                path: '/all_marathon',
+                element: <AllMarathon />,
+            },
+            {
+                path: '/all_marathon/:id',
+                element: <PrivateRoute><MarathonDetails /></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/marathons/${params.id}`)
+            },
+            {
+                path: '/add_marathon',
+                element: <PrivateRoute><AddMarathonForm /></PrivateRoute>,
+
+            },
+            {
+                path: '/register',
+                element: <Register />
+            },
+            {
+                path: 'signIn',
+                element: <SignIn />
+            },
+        ],
+
+    },
+]);
+
+export default router;
