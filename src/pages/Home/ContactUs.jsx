@@ -22,12 +22,12 @@ const ContactUs = () => {
                 ease: 'power3.out',
                 scrollTrigger: {
                     trigger: formRef.current,
-                    start: 'top 80%', // Trigger animation when the element reaches 80% of the viewport
+                    start: 'top 70%',
                 },
             }
         );
 
-        // Animate image section on scroll
+
         gsap.fromTo(
             imageRef.current,
             { opacity: 0, x: 50 },
@@ -38,7 +38,7 @@ const ContactUs = () => {
                 ease: 'power3.out',
                 scrollTrigger: {
                     trigger: imageRef.current,
-                    start: 'top 80%', // Trigger animation when the element reaches 80% of the viewport
+                    start: 'top 70%',
                 },
             }
         );
@@ -53,7 +53,7 @@ const ContactUs = () => {
                 ease: 'power3.out',
                 scrollTrigger: {
                     trigger: containerRef.current,
-                    start: 'top 90%', // Start animation as the container enters the viewport
+                    start: 'top 85%',
                 },
             }
         );
@@ -62,53 +62,53 @@ const ContactUs = () => {
     return (
         <div
             ref={containerRef}
-            className="contact-us bg-gray-200 my-10 rounded-lg py-12 px-6 sm:px-12 lg:px-24"
+            className="contact-us bg-stone-100 dark:bg-zinc-900 my-10 rounded-lg py-12 px-6 sm:px-12 lg:px-24 shadow-xl dark:shadow-2xl transition-all duration-300"
         >
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 {/* Left Section: Text and Form */}
-                <div ref={formRef}>
-                    <h2 className="text-4xl font-bold text-gray-800 mb-4 text-center lg:text-left">
+                <div ref={formRef} className="text-center lg:text-left">
+                    <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
                         Contact Us
                     </h2>
-                    <p className="text-gray-600 text-lg mb-6 text-center lg:text-left">
+                    <p className="text-gray-600 dark:text-gray-300 text-lg mb-6">
                         Have questions about our marathon events or want to collaborate? Reach
                         out to us!
                     </p>
-                    <form className="space-y-6">
+                    <form className="space-y-6 bg-white dark:bg-zinc-800 rounded-lg p-8 shadow-lg dark:shadow-2xl transition-all duration-300">
                         {/* Name Input */}
                         <div>
-                            <label className="block text-gray-700 font-semibold">Name</label>
+                            <label className="block text-gray-700 dark:text-gray-300 font-semibold">Name</label>
                             <input
                                 type="text"
                                 placeholder="Enter your name"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 required
                             />
                         </div>
                         {/* Email Input */}
                         <div>
-                            <label className="block text-gray-700 font-semibold">Email</label>
+                            <label className="block text-gray-700 dark:text-gray-300 font-semibold">Email</label>
                             <input
                                 type="email"
                                 placeholder="Enter your email"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 required
                             />
                         </div>
                         {/* Message Textarea */}
                         <div>
-                            <label className="block text-gray-700 font-semibold">Message</label>
+                            <label className="block text-gray-700 dark:text-gray-300 font-semibold">Message</label>
                             <textarea
                                 placeholder="Write your message here"
                                 rows="4"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 required
                             ></textarea>
                         </div>
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 transition-all duration-300"
+                            className="w-full bg-blue-500 text-white py-3 rounded-lg shadow-2xl hover:bg-blue-600 transition-all duration-300"
                         >
                             Send Message
                         </button>
@@ -130,3 +130,4 @@ const ContactUs = () => {
 };
 
 export default ContactUs;
+
