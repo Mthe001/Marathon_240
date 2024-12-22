@@ -5,6 +5,7 @@ const AllMarathon = () => {
     const [marathons, setMarathons] = useState([]); // State to hold marathons data
     const [loading, setLoading] = useState(true); // State to manage loading state
     const [error, setError] = useState(null); // State to manage error state
+
     // Fetch marathons from the API
     useEffect(() => {
         const fetchMarathons = async () => {
@@ -33,16 +34,14 @@ const AllMarathon = () => {
         return <div className="text-center text-red-600">{error}</div>;
     }
 
-
-
     return (
         <div>
             {/* Show Marathon List */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
                 {marathons.map((marathon) => (
                     <div
                         key={marathon._id}
-                        className="card bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl p-5 border-2 border-green-500"
+                        className="card bg-white dark:bg-zinc-800 shadow-lg rounded-lg overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl p-5 border-2 border-green-500 dark:border-green-700"
                     >
                         {/* Use imageUrl field to display the image */}
                         <img
@@ -51,20 +50,20 @@ const AllMarathon = () => {
                             className="w-full h-56 object-cover rounded-t-lg"
                         />
                         <div className="p-6">
-                            <h3 className="text-xl font-semibold text-gray-800 truncate">
+                            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 truncate">
                                 {marathon.title}
                             </h3>
-                            <p className="text-gray-600 mt-2 text-sm">
+                            <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm">
                                 {marathon.description}
                             </p>
                             <div className="mt-4">
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
                                     Location: {marathon.location}
                                 </p>
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
                                     Running Distance: {marathon.runningDistance}
                                 </p>
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
                                     Start Date: {new Date(
                                         marathon.marathonStartDate
                                     ).toLocaleDateString()}
@@ -73,7 +72,7 @@ const AllMarathon = () => {
                             {/* See Details Button */}
                             <button
                                 onClick={() => handleSeeDetails(marathon)}
-                                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors dark:bg-blue-700 dark:hover:bg-blue-600"
                             >
                                 See Details
                             </button>
@@ -81,7 +80,6 @@ const AllMarathon = () => {
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };
