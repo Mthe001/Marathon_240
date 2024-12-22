@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import AllMarathon from "../pages/AllMarathon/AllMarathon";
 import MarathonDetails from "../pages/MarathonDetails/MarathonDetails";
 import AddMarathonForm from "../pages/AddMarathonForm/AddMarathonForm";
+import Blog from "../pages/Resources/Blog";
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
                 path: '/add_marathon',
                 element: <PrivateRoute><AddMarathonForm /></PrivateRoute>,
 
+            },
+            {
+                path: '/blog',
+                element: <Blog />,
             },
             {
                 path: '/register',
