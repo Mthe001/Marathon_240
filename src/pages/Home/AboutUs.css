@@ -1,0 +1,16 @@
+/* AboutUs.css */
+.about-us-container {
+  transition: background-color 0.3s ease;
+}
+
+.about-us-title {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.motivational-quote {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about-us-content {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
