@@ -9,8 +9,8 @@ const MarathonCampaign = () => {
             description: 'Join the annual city run and explore the vibrant streets of downtown.',
             location: 'New York, USA',
             runningDistance: '10 km',
-            date: '2024-04-15',
-            image: 'https://images.pexels.com/photos/2002209/pexels-photo-2002209.jpeg?auto=compress&cs=tinysrgb&w=300', // Replace with actual image URL
+            date: 'Not set Yet',
+            image: 'https://images.pexels.com/photos/2002209/pexels-photo-2002209.jpeg?auto=compress&cs=tinysrgb&w=500', // Replace with actual image URL
         },
         {
             id: 2,
@@ -18,8 +18,8 @@ const MarathonCampaign = () => {
             description: 'Enjoy a scenic run along the beautiful coastline.',
             location: 'Miami, USA',
             runningDistance: '5 km',
-            date: '2024-05-10',
-            image: 'https://images.pexels.com/photos/1578384/pexels-photo-1578384.jpeg?auto=compress&cs=tinysrgb&w=300',
+            date: 'Not Set Yet',
+            image: 'https://images.pexels.com/photos/1578384/pexels-photo-1578384.jpeg?auto=compress&cs=tinysrgb&w=500',
         },
         {
             id: 3,
@@ -27,8 +27,8 @@ const MarathonCampaign = () => {
             description: 'Conquer the trails with this challenging mountain marathon.',
             location: 'Denver, USA',
             runningDistance: '15 km',
-            date: '2024-06-20',
-            image: 'https://images.pexels.com/photos/1555351/pexels-photo-1555351.jpeg?auto=compress&cs=tinysrgb&w=300',
+            date: 'Will be updated soon',
+            image: 'https://images.pexels.com/photos/1555351/pexels-photo-1555351.jpeg?auto=compress&cs=tinysrgb&w=500',
         },
         {
             id: 4,
@@ -36,8 +36,8 @@ const MarathonCampaign = () => {
             description: 'Experience the thrill of running under the stars.',
             location: 'Los Angeles, USA',
             runningDistance: '7 km',
-            date: '2024-07-05',
-            image: 'https://images.pexels.com/photos/1568929/pexels-photo-1568929.jpeg?auto=compress&cs=tinysrgb&w=300',
+            date: 'Will be updated soon',
+            image: 'https://images.pexels.com/photos/1568929/pexels-photo-1568929.jpeg?auto=compress&cs=tinysrgb&w=500',
         },
         {
             id: 5,
@@ -45,8 +45,8 @@ const MarathonCampaign = () => {
             description: 'Run through the serene forest trails and reconnect with nature.',
             location: 'Seattle, USA',
             runningDistance: '12 km',
-            date: '2024-08-15',
-            image: 'https://images.pexels.com/photos/3760259/pexels-photo-3760259.jpeg?auto=compress&cs=tinysrgb&w=300',
+            date: 'Not Set Yet',
+            image: 'https://images.pexels.com/photos/3760259/pexels-photo-3760259.jpeg?auto=compress&cs=tinysrgb&w=500',
         },
         {
             id: 6,
@@ -54,8 +54,8 @@ const MarathonCampaign = () => {
             description: 'Test your endurance with this unique desert running experience.',
             location: 'Phoenix, USA',
             runningDistance: '8 km',
-            date: '2024-09-30',
-            image: 'https://images.pexels.com/photos/618612/pexels-photo-618612.jpeg?auto=compress&cs=tinysrgb&w=300',
+            date: 'Upcoming',
+            image: 'https://images.pexels.com/photos/618612/pexels-photo-618612.jpeg?auto=compress&cs=tinysrgb&w=500',
         },
     ];
 
@@ -90,7 +90,7 @@ const MarathonCampaign = () => {
                                     Running Distance: {marathon.runningDistance}
                                 </p>
                                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                                    Start Date: {new Date(marathon.date).toLocaleDateString()}
+                                    Start Date: {marathon.date}
                                 </p>
                             </div>
                             {/* "Let's Participate" Button */}
