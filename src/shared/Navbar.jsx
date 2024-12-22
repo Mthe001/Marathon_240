@@ -90,7 +90,7 @@ const Navbar = () => {
             <div className="navbar bg-base-100 dark:bg-zinc-900 dark:text-gray-50">
                 <div className="flex-1">
                     <Link className="btn btn-ghost text-xl" to="/">
-                        Job-City
+                        <img src="https://i.ibb.co/xhCd4Tb/Screenshot-2024-12-22-114012-removebg-preview.png" alt="logo" className='w-20' />
                     </Link>
                 </div>
 
