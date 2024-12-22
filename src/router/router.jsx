@@ -11,6 +11,7 @@ import MarathonDetails from "../pages/MarathonDetails/MarathonDetails";
 import AddMarathonForm from "../pages/AddMarathonForm/AddMarathonForm";
 import Blog from "../pages/Resources/Blog";
 import TrainingTips from "../pages/Resources/TrainingTips";
+import NutritionsGuides from "../pages/Resources/NutritionsGuides";
 
 
 const router = createBrowserRouter([
@@ -42,9 +43,14 @@ const router = createBrowserRouter([
                 path: '/blog',
                 element: <Blog />,
             },
+
             {
                 path: '/training-tips',
                 element: <TrainingTips />,
+            },
+            {
+                path: '/nutrition-guides',
+                element: <NutritionsGuides />,
             },
             {
                 path: '/register',
