@@ -60,13 +60,15 @@ const MarathonCampaign = () => {
     ];
 
     return (
-        <div className="p-8">
-            <h2 className="text-2xl font-bold text-center mb-6">Marathon Campaigns</h2>
+        <div className="p-8 bg-gray-100 dark:bg-zinc-900 transition-colors duration-300">
+            <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">
+                Marathon Campaigns
+            </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                 {marathons.map((marathon) => (
                     <div
                         key={marathon.id}
-                        className="card bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl p-5"
+                        className="card bg-white dark:bg-zinc-950 shadow-lg rounded-lg overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl p-5"
                     >
                         <img
                             src={marathon.image}
@@ -74,25 +76,28 @@ const MarathonCampaign = () => {
                             className="w-full h-48 object-cover rounded-lg"
                         />
                         <div className="p-4">
-                            <h3 className="text-lg font-semibold text-gray-800">{marathon.title}</h3>
-                            <p className="text-gray-600 mt-2 text-sm">{marathon.description}</p>
+                            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+                                {marathon.title}
+                            </h3>
+                            <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm">
+                                {marathon.description}
+                            </p>
                             <div className="mt-4">
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
                                     Location: {marathon.location}
                                 </p>
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
                                     Running Distance: {marathon.runningDistance}
                                 </p>
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
                                     Start Date: {new Date(marathon.date).toLocaleDateString()}
                                 </p>
                             </div>
-                            {/* New "Let's Participate" Button */}
+                            {/* "Let's Participate" Button */}
                             <div className="mt-4">
-                                <Link to='all_marathon'>
+                                <Link to="/all_marathon">
                                     <button
-
-                                        className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
+                                        className="w-full bg-blue-500 dark:bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-600 dark:hover:bg-blue-700 transition duration-200"
                                     >
                                         Let's Participate
                                     </button>
