@@ -8,7 +8,9 @@ import ContactUs from './ContactUs';
 const Home = () => {
     return (
         <div>
-            <Banner />
+            <section className='w-[90%] mx-auto'>
+                <Banner />
+            </section>
             <MarathonCampaign />
             <AboutUs />
             <ContactUs />
