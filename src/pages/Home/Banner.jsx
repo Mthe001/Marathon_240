@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
     return (
@@ -20,7 +21,7 @@ const Banner = () => {
                     <p className="text-sm sm:text-base lg:text-lg">
                         Push beyond your limits and embrace the thrill of the race. This is more than a run; it’s a journey of achievement. Join us and experience the magic of the marathon.
                     </p>
-                    <button className="btn btn-outline btn-sm sm:btn-md lg:btn-lg">Let's Run</button>
+                    <Link to='/all_marathon' className="btn btn-outline btn-sm sm:btn-md lg:btn-lg">Let's Run</Link>
                 </div>
 
                 {/* Images Section */}
@@ -35,7 +36,7 @@ const Banner = () => {
                     />
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
