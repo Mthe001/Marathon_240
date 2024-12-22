@@ -60,7 +60,7 @@ const MarathonCampaign = () => {
     ];
 
     return (
-        <div className="p-8 bg-gray-100 dark:bg-zinc-900 transition-colors duration-300">
+        <div id='upcomging_marathon' className="p-8 bg-gray-100 dark:bg-zinc-900 transition-colors duration-300">
             <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">
                 Upcoming  Marathon
             </h2>
