@@ -10,6 +10,7 @@ import AllMarathon from "../pages/AllMarathon/AllMarathon";
 import MarathonDetails from "../pages/MarathonDetails/MarathonDetails";
 import AddMarathonForm from "../pages/AddMarathonForm/AddMarathonForm";
 import Blog from "../pages/Resources/Blog";
+import TrainingTips from "../pages/Resources/TrainingTips";
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog />,
+            },
+            {
+                path: '/training-tips',
+                element: <TrainingTips />,
             },
             {
                 path: '/register',
