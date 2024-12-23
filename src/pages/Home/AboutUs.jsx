@@ -74,18 +74,18 @@ const AboutUs = () => {
     }, []);
 
     return (
-        <div className="about-us-container bg-gray-50 dark:bg-zinc-900 py-16 px-6 sm:px-8 md:px-16 lg:px-24">
+        <div className="about-us-container bg-gray-50 dark:bg-zinc-900 py-16 px-6 sm:px-8 md:px-16 lg:px-24 overflow-x-hidden">
             <div className="container mx-auto">
 
                 {/* Title Section */}
-                <h2 className="about-us-title text-3xl sm:text-4xl font-extrabold text-gray-800 dark:text-white text-center mb-12">
+                <h2 className="about-us-title text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white text-center mb-12">
                     About Our Marathon Website
                 </h2>
 
                 {/* Motivational Quote Section */}
-                <div className="motivational-quote grid grid-cols-1 sm:grid-cols-2 gap-12 items-center mb-12">
+                <div className="motivational-quote grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12 items-center mb-12">
                     <div className="text-center sm:text-left">
-                        <p className="text-lg sm:text-xl font-semibold text-gray-600 dark:text-gray-300 italic">
+                        <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-600 dark:text-gray-300 italic">
                             "The journey of a thousand miles begins with a single step."
                         </p>
                     </div>
@@ -93,28 +93,28 @@ const AboutUs = () => {
                         <img
                             src="https://i.ibb.co.com/xhCd4Tb/Screenshot-2024-12-22-114012-removebg-preview.png"
                             alt="Marathon"
-                            className="w-full h-full object-cover rounded-lg shadow-lg"
+                            className="w-full h-auto object-cover rounded-lg shadow-lg"
                         />
                     </div>
                 </div>
 
                 {/* About Us Content Section */}
-                <div className="about-us-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-                    <div className="bg-white dark:bg-zinc-950 rounded-lg shadow-lg p-8 text-center content-left">
-                        <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Who We Are</h3>
-                        <p className="text-gray-600 dark:text-gray-300">
+                <div className="about-us-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
+                    <div className="bg-white dark:bg-zinc-950 rounded-lg shadow-lg p-6 md:p-8 text-center content-left">
+                        <h3 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white mb-4">Who We Are</h3>
+                        <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
                             We are a passionate community of runners dedicated to providing a platform for runners of all levels.
                         </p>
                     </div>
-                    <div className="bg-white dark:bg-stone-800 rounded-lg shadow-lg p-8 text-center content-left">
-                        <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Our Mission</h3>
-                        <p className="text-gray-600 dark:text-gray-300">
+                    <div className="bg-white dark:bg-stone-800 rounded-lg shadow-lg p-6 md:p-8 text-center content-left">
+                        <h3 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white mb-4">Our Mission</h3>
+                        <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
                             Our mission is to connect, motivate, and inspire people to take on challenges and achieve their marathon goals.
                         </p>
                     </div>
-                    <div className="bg-white dark:bg-amber-950 rounded-lg shadow-lg p-8 text-center content-right">
-                        <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Join Us</h3>
-                        <p className="text-gray-600 dark:text-gray-300">
+                    <div className="bg-white dark:bg-amber-950 rounded-lg shadow-lg p-6 md:p-8 text-center content-right">
+                        <h3 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-white mb-4">Join Us</h3>
+                        <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
                             Join us in our upcoming events and be a part of the marathon movement, pushing boundaries, and achieving greatness.
                         </p>
                     </div>
