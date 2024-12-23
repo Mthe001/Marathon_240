@@ -82,8 +82,22 @@ const Navbar = () => {
                     <a>All Marathons</a>
                 </li>
             </NavLink>
+            <NavLink
+                to="/my_marathon"
+                className={({ isActive }) =>
+                    isActive
+                        ? 'text-blue-500 font-bold'
+                        : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
+                }
+            >
+                <li>
+                    <a>My Marathons</a>
+                </li>
+            </NavLink>
         </>
     );
+
+
 
     return (
         <div>
