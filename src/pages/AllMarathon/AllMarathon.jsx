@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const AllMarathon = () => {
     const [marathons, setMarathons] = useState([]); // State to hold marathons data
@@ -70,12 +71,11 @@ const AllMarathon = () => {
                                 </p>
                             </div>
                             {/* See Details Button */}
-                            <button
-                                onClick={() => handleSeeDetails(marathon)}
-                                className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors dark:bg-blue-700 dark:hover:bg-blue-600"
+                            <Link to={`/all_marathon/${marathon._id}`}
+                                className="mt-10 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors dark:bg-blue-700 dark:hover:bg-blue-600 btn"
                             >
                                 See Details
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 ))}
