@@ -58,7 +58,7 @@ const Navbar = () => {
                 </li>
             </NavLink>
             <NavLink
-                to="/my_posted_jobs"
+                to="/my_apply"
                 className={({ isActive }) =>
                     isActive
                         ? 'text-blue-500 font-bold'
@@ -66,7 +66,7 @@ const Navbar = () => {
                 }
             >
                 <li>
-                    <a>For Marathon</a>
+                    <a>My Apply</a>
                 </li>
             </NavLink>
 

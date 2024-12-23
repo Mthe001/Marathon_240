@@ -5,20 +5,17 @@ import Swal from 'sweetalert2';
 import AuthContext from '../../context/AuthContext/AuthContext';
 
 const MarathonDetails = () => {
-    // Use the data fetched by the loader
-    const marathon = useLoaderData();
+    const marathon = useLoaderData(); // Marathon data fetched by the loader
     const navigate = useNavigate();
 
-    // Assume we get the logged-in user from context or other authentication methods
-    const { user } = useContext(AuthContext); // Example: replace this with your actual user context
-    const email = user ? user.email : ''; // Logged-in user's email
-    const token = user ? user.token : ''; // User's authentication token (assuming it's in the context)
+    const { user } = useContext(AuthContext); // Logged-in user context
+    const email = user ? user.email : ''; // Get the user's email
+    const token = user ? user.token : ''; // User's token (if needed)
 
-    const [registrationOpen, setRegistrationOpen] = useState(false); // To track if registration is open
-    const [registrationCount, setRegistrationCount] = useState(marathon.totalRegistrations || 0);
+    const [registrationOpen, setRegistrationOpen] = useState(false);
+    const [registrationCount, setRegistrationCount] = useState(marathon.totalRegistrationCount || 0);
 
     useEffect(() => {
-        // Check if registration is open
         const currentDate = new Date();
         const startRegistrationDate = new Date(marathon.startRegistrationDate);
         const endRegistrationDate = new Date(marathon.endRegistrationDate);
@@ -28,38 +25,31 @@ const MarathonDetails = () => {
         }
     }, [marathon]);
 
-    // Handle registration form submission
     const handleRegister = async (e) => {
         e.preventDefault();
-
-        // Collect form data from e.target values
         const formData = {
             email: e.target.email.value,
             firstName: e.target.firstName.value,
             lastName: e.target.lastName.value,
             contactNumber: e.target.contactNumber.value,
             additionalInfo: e.target.additionalInfo.value,
+            marathonTitle: marathon.title, // Adding marathon title to form data
+            marathonStartDate: marathon.marathonStartDate, // Adding marathon start date to form data
         };
-        console.log(formData);
 
         try {
-            // Submit registration data to the API
-            const response = await axios.post(
-                'http://localhost:5000/register',
-                {
-                    marathonId: marathon._id,
-                    ...formData,
-                },
-                {
-                    withCredentials: true, // Include credentials (cookies)
-                }
-            );
+            const response = await axios.post('http://localhost:5000/register', {
+                marathonId: marathon._id,
+                ...formData,
+            }, {
+                withCredentials: true,
+            });
 
-            if (response.status === 201) { // Correct status for successful registration
-                // Increment the registration count if registration is successful
-                setRegistrationCount((prevCount) => prevCount + 1);
+            if (response.status === 201) {
+                // Fetch the updated registration count from the server
+                const updatedMarathon = await axios.get(`http://localhost:5000/marathons/${marathon._id}`);
+                setRegistrationCount(updatedMarathon.data.totalRegistrationCount);
 
-                // Show SweetAlert success
                 Swal.fire({
                     title: 'Success!',
                     text: 'Registration successful!',
@@ -77,7 +67,7 @@ const MarathonDetails = () => {
                 });
             }
         } catch (error) {
-            console.error('Error registering:', error);
+            console.error('Error during registration:', error);
             Swal.fire({
                 title: 'Error!',
                 text: 'Registration failed. Please try again.',
@@ -87,9 +77,31 @@ const MarathonDetails = () => {
         }
     };
 
-
     return (
         <div className="marathon-details p-8 bg-white dark:bg-zinc-800 rounded-lg shadow-2xl max-w-4xl mx-auto mt-8 my-24">
+            <div className="mb-4">
+                <button
+                    onClick={() => navigate(-1)} // Navigate back to the previous page
+                    className="text-black dark:text-gray-200 hover:text-blue-500 transition-colors"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"
+                        />
+                    </svg>
+                    Back
+                </button>
+            </div>
+
             {/* Header */}
             <h2 className="text-3xl font-bold mb-6 text-center text-black dark:text-gray-200">
                 {marathon.title || 'Marathon Details'}
@@ -105,8 +117,21 @@ const MarathonDetails = () => {
             )}
 
             {/* Marathon Information */}
-            <div className="marathon-info grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {/* Other marathon details */}
+            <div className="marathon-info grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                <div>
+                    <h3 className="text-xl font-semibold text-black dark:text-gray-300">
+                        Marathon Start Date:
+                    </h3>
+                    <p className="text-black dark:text-gray-400">
+                        {new Date(marathon.marathonStartDate).toLocaleDateString()}
+                    </p>
+                </div>
+                <div>
+                    <h3 className="text-xl font-semibold text-black dark:text-gray-300">
+                        Total Registrations:
+                    </h3>
+                    <p className="text-black dark:text-gray-400">{registrationCount}</p>
+                </div>
             </div>
 
             {/* Register Button */}
@@ -134,10 +159,38 @@ const MarathonDetails = () => {
                             <input
                                 type="email"
                                 name="email"
-                                value={email} // Displaying the logged-in user's email
+                                value={email}
                                 readOnly
                                 className="w-full p-3 mt-2 rounded-lg border dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
                                 placeholder="Enter your email"
+                                required
+                            />
+                        </div>
+
+                        {/* Marathon Title */}
+                        <div>
+                            <label className="font-semibold text-black dark:text-gray-300">Marathon Title:</label>
+                            <input
+                                type="text"
+                                name="marathonTitle"
+                                value={marathon.title}
+                                readOnly
+                                className="w-full p-3 mt-2 rounded-lg border dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+                                placeholder="Marathon Title"
+                                required
+                            />
+                        </div>
+
+                        {/* Marathon Start Date */}
+                        <div>
+                            <label className="font-semibold text-black dark:text-gray-300">Marathon Start Date:</label>
+                            <input
+                                type="text"
+                                name="marathonStartDate"
+                                value={new Date(marathon.marathonStartDate).toLocaleDateString()}
+                                readOnly
+                                className="w-full p-3 mt-2 rounded-lg border dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+                                placeholder="Start Date"
                                 required
                             />
                         </div>

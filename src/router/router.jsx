@@ -13,6 +13,7 @@ import Blog from "../pages/Resources/Blog";
 import TrainingTips from "../pages/Resources/TrainingTips";
 import NutritionsGuides from "../pages/Resources/NutritionsGuides";
 import GearRecommendations from "../pages/Resources/GearRecommendations";
+import MyApply from "../pages/MyApply/MyApply";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
                 path: '/add_marathon',
                 element: <PrivateRoute><AddMarathonForm /></PrivateRoute>,
 
+            },
+            {
+                path: '/my_apply',
+                element: <PrivateRoute><MyApply /></PrivateRoute>,
             },
             {
                 path: '/blog',
