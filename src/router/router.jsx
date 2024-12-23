@@ -14,6 +14,7 @@ import TrainingTips from "../pages/Resources/TrainingTips";
 import NutritionsGuides from "../pages/Resources/NutritionsGuides";
 import GearRecommendations from "../pages/Resources/GearRecommendations";
 import MyApply from "../pages/MyApply/MyApply";
+import MyMarathons from "../MyMarathons/MyMarathons";
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
                 path: '/add_marathon',
                 element: <PrivateRoute><AddMarathonForm /></PrivateRoute>,
 
+            },
+            {
+                path: '/my_marathon',
+                element: <PrivateRoute><MyMarathons /></PrivateRoute>,
             },
             {
                 path: '/my_apply',
