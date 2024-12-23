@@ -16,7 +16,6 @@ const AddMarathonForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate required fields
         const formData = new FormData(e.target);
         const title = formData.get('title');
         const location = formData.get('location');
@@ -57,13 +56,12 @@ const AddMarathonForm = () => {
             createdBy: user.email, // Attach user's email for reference
         };
 
-        // Send the marathon data to the server using axios
         try {
             const response = await axios.post('http://localhost:5000/marathons', marathonDetails, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                withCredentials: true, // To include cookies in requests
+                withCredentials: true,
             });
 
             if (response.status === 201) {
@@ -98,90 +96,90 @@ const AddMarathonForm = () => {
     };
 
     return (
-        <div className="add-marathon p-8 bg-white dark:bg-gray-900 rounded-lg shadow-2xl max-w-4xl mx-auto mt-8 my-24 transition-all duration-300">
-            <h2 className="text-3xl font-bold mb-6 text-center text-black dark:text-gray-200 transition-all duration-300">
+        <div className="add-marathon p-8 bg-white dark:bg-zinc-950 rounded-lg shadow-2xl max-w-4xl mx-auto mt-8 my-24">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-black dark:text-gray-200">
                 Create Marathon Event
             </h2>
-            <form ref={formRef} onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {/* User Email (Read-only) */}
-                <div className="form-control col-span-1">
-                    <label className="label font-semibold text-black dark:text-gray-300">Your Email:</label>
+            <form ref={formRef} onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                {/* User Email */}
+                <div className="form-control">
+                    <label className="label font-semibold text-sm sm:text-base text-black dark:text-gray-300">Your Email:</label>
                     <input
                         type="email"
                         name="email"
                         value={user?.email || ''}
                         readOnly
-                        className="input input-bordered w-full bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-300 border-gray-400 dark:border-gray-600 shadow-md focus:outline-none"
+                        className="input input-bordered w-full bg-gray-100 dark:bg-gray-800 text-black dark:text-gray-300 border-gray-400 dark:border-gray-600 shadow-md"
                     />
                 </div>
 
                 {/* Marathon Title */}
-                <div className="form-control col-span-1">
-                    <label className="label font-semibold text-black dark:text-gray-300">Marathon Title:</label>
+                <div className="form-control">
+                    <label className="label font-semibold text-sm sm:text-base text-black dark:text-gray-300">Marathon Title:</label>
                     <input
                         type="text"
                         name="title"
-                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-gray-500"
+                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md"
                         required
                     />
                 </div>
 
                 {/* Start Registration Date */}
-                <div className="form-control col-span-1">
-                    <label className="label font-semibold text-black dark:text-gray-300">Start Registration Date:</label>
+                <div className="form-control">
+                    <label className="label font-semibold text-sm sm:text-base text-black dark:text-gray-300">Start Registration Date:</label>
                     <DatePicker
                         selected={startRegDate}
                         onChange={(date) => setStartRegDate(date)}
                         dateFormat="yyyy-MM-dd"
                         placeholderText="Select start date"
-                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-gray-500"
+                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md"
                         required
                     />
                 </div>
 
                 {/* End Registration Date */}
-                <div className="form-control col-span-1">
-                    <label className="label font-semibold text-black dark:text-gray-300">End Registration Date:</label>
+                <div className="form-control">
+                    <label className="label font-semibold text-sm sm:text-base text-black dark:text-gray-300">End Registration Date:</label>
                     <DatePicker
                         selected={endRegDate}
                         onChange={(date) => setEndRegDate(date)}
                         dateFormat="yyyy-MM-dd"
                         placeholderText="Select end date"
-                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-gray-500"
+                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md"
                         required
                     />
                 </div>
 
                 {/* Marathon Start Date */}
-                <div className="form-control col-span-1">
-                    <label className="label font-semibold text-black dark:text-gray-300">Marathon Start Date:</label>
+                <div className="form-control">
+                    <label className="label font-semibold text-sm sm:text-base text-black dark:text-gray-300">Marathon Start Date:</label>
                     <DatePicker
                         selected={marathonStartDate}
                         onChange={(date) => setMarathonStartDate(date)}
                         dateFormat="yyyy-MM-dd"
                         placeholderText="Select marathon start date"
-                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-gray-500"
+                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md"
                         required
                     />
                 </div>
 
                 {/* Location */}
-                <div className="form-control col-span-1">
-                    <label className="label font-semibold text-black dark:text-gray-300">Location:</label>
+                <div className="form-control">
+                    <label className="label font-semibold text-sm sm:text-base text-black dark:text-gray-300">Location:</label>
                     <input
                         type="text"
                         name="location"
-                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-gray-500"
+                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md"
                         required
                     />
                 </div>
 
                 {/* Running Distance */}
-                <div className="form-control col-span-1">
-                    <label className="label font-semibold text-black dark:text-gray-300">Running Distance:</label>
+                <div className="form-control">
+                    <label className="label font-semibold text-sm sm:text-base text-black dark:text-gray-300">Running Distance:</label>
                     <select
                         name="runningDistance"
-                        className="select select-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-gray-500"
+                        className="select select-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md"
                         required
                     >
                         <option value="">Select Distance</option>
@@ -192,32 +190,32 @@ const AddMarathonForm = () => {
                 </div>
 
                 {/* Description */}
-                <div className="form-control col-span-2">
-                    <label className="label font-semibold text-black dark:text-gray-300">Description:</label>
+                <div className="form-control sm:col-span-2">
+                    <label className="label font-semibold text-sm sm:text-base text-black dark:text-gray-300">Description:</label>
                     <textarea
                         name="description"
-                        className="textarea textarea-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-gray-500"
+                        className="textarea textarea-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md"
                         required
                     ></textarea>
                 </div>
 
                 {/* Marathon Image URL */}
-                <div className="form-control col-span-2">
-                    <label className="label font-semibold text-black dark:text-gray-300">Marathon Image URL:</label>
+                <div className="form-control sm:col-span-2">
+                    <label className="label font-semibold text-sm sm:text-base text-black dark:text-gray-300">Marathon Image URL:</label>
                     <input
                         type="text"
                         name="imageUrl"
-                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-gray-500"
+                        className="input input-bordered w-full border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-black dark:text-gray-300 shadow-md"
                         placeholder="Enter image URL"
                         required
                     />
                 </div>
 
                 {/* Submit Button */}
-                <div className="col-span-2">
+                <div className="sm:col-span-2">
                     <button
                         type="submit"
-                        className="btn btn-success w-full mt-6 text-white bg-green-500 hover:bg-green-600 shadow-lg hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-gray-500"
+                        className="btn w-full bg-green-500 hover:bg-green-600 text-white shadow-md"
                     >
                         Create Marathon
                     </button>
