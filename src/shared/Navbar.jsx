@@ -146,10 +146,10 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div className="flex gap-2">
-                            <Link className="btn btn-outline dark:bg-gray-300 text-xl" to="/register">
+                            <Link className="btn btn-link  dark:text-green-300 dark:font-bold text-xl" to="/register">
                                 <SiReacthookform />
                             </Link>
-                            <Link className="btn btn-outline dark:bg-slate-300 text-xl" to="/signIn">
+                            <Link className="btn btn-link dark:text-red-500 text-xl" to="/signIn">
                                 <MdOutlineLogin />
                             </Link>
                         </div>
