@@ -97,12 +97,6 @@ const Footer = () => {
                             Get in Touch
                         </Link>
                         <Link
-                            to="/volunteer"
-                            className="block link-hover text-gray-600 dark:text-gray-300 hover:text-blue-500 transition duration-300"
-                        >
-                            Volunteer
-                        </Link>
-                        <Link
                             to="/faqs"
                             className="block link-hover text-gray-600 dark:text-gray-300 hover:text-blue-500 transition duration-300"
                         >

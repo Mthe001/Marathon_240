@@ -28,6 +28,8 @@ import AboutUs from "../pages/Contact/AboutUs";
 
 
 
+
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -108,6 +110,7 @@ const router = createBrowserRouter([
                 path: '/about-us',
                 element: <AboutUs />,
             },
+
             {
                 path: '/register',
                 element: <Register />
