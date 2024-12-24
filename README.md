@@ -70,8 +70,8 @@ Key purposes include:
 
 For any inquiries, suggestions, or support, feel free to reach out to us. We love hearing from you!
 
-- **Creator's Email:** [your.email@example.com](mailto:your.email@example.com)
-- **GitHub:** [https://github.com/yourgithub](https://github.com/yourgithub)
+- **Creator's Email:** [your.email@example.com](mailto:mtheredwanulhaque@gmail.com)
+- **GitHub:** [https://github.com/yourgithub](https://github.com/Mthe001)
 - **Location:**  
   Marathon_240 Team  
   123 Running St.,  
