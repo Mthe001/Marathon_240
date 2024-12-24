@@ -23,6 +23,7 @@ import Profile from "../pages/ProfileRoute/Profile";
 import Settings from "../pages/ProfileRoute/Settings";
 import VirtualRuns from "../pages/Events/VirtualRuns";
 import Faq from "../pages/Contact/Faq";
+import GetInTouch from "../pages/Contact/GetInTouch";
 
 
 
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
             {
                 path: '/faqs',
                 element: <Faq />,
+            },
+            {
+                path: '/contact',
+                element: <GetInTouch />,
             },
             {
                 path: '/register',
