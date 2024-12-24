@@ -135,6 +135,7 @@ const MarathonDetails = () => {
                 </button>
             </div>
 
+
             {/* Header */}
             <h2 className="text-3xl font-bold mb-6 text-center text-black dark:text-gray-200">
                 {marathon.title || 'Marathon Details'}
