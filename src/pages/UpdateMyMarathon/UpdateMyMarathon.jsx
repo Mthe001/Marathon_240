@@ -14,6 +14,11 @@ const UpdateMyMarathon = () => {
         imageUrl: ''
     });
 
+    // Dynamic document title
+    useEffect(() => {
+        document.title = marathon ? `Update: ${marathon.title}` : 'Update Marathon';
+    }, [marathon]);
+
     useEffect(() => {
         // Fetch the marathon details based on the ID from the URL
         axios.get(`http://localhost:5000/marathons/${id}`, { withCredentials: true })

@@ -23,6 +23,9 @@ const MarathonDetails = () => {
         if (currentDate >= startRegistrationDate && currentDate <= endRegistrationDate) {
             setRegistrationOpen(true);
         }
+
+        // Set the document title to "Marathon Details"
+        document.title = marathon.title ? `${marathon.title} - Details` : 'Marathon Details';
     }, [marathon]);
 
     const handleRegister = async (e) => {

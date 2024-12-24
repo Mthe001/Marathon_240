@@ -13,6 +13,8 @@ const MyApply = () => {
     const [deleteId, setDeleteId] = useState(null); // Store registration ID for deletion
 
     useEffect(() => {
+        document.title = 'My Marathon Registrations'; // Set the document title
+
         const fetchRegistrations = async () => {
             try {
                 // Fetch the user's registration data

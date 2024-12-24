@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import AuthContext from '../../context/AuthContext/AuthContext';
 
 const MyMarathons = () => {
@@ -8,12 +8,16 @@ const MyMarathons = () => {
     const [marathons, setMarathons] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [selectedMarathon, setSelectedMarathon] = useState(null); // Store marathon for updates
-    const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleteId, setDeleteId] = useState(null);
+    const [deleting, setDeleting] = useState(false);
 
-    const navigate = useNavigate();  // Initialize useNavigate hook
+    const navigate = useNavigate(); // Initialize useNavigate hook
+
+    // Set the document title
+    useEffect(() => {
+        document.title = "My Posted Marathon";
+    }, []);
 
     // Fetch marathons from the server
     const fetchMarathons = async () => {
@@ -56,6 +60,7 @@ const MyMarathons = () => {
     };
 
     const confirmDelete = async () => {
+        setDeleting(true);
         try {
             await axios.delete(`http://localhost:5000/marathons/${deleteId}`, { withCredentials: true });
             setMarathons((prev) => prev.filter((m) => m._id !== deleteId));
@@ -63,6 +68,8 @@ const MyMarathons = () => {
         } catch (err) {
             console.error('Error deleting marathon:', err);
             alert('Failed to delete the marathon.');
+        } finally {
+            setDeleting(false);
         }
     };
 
@@ -113,16 +120,41 @@ const MyMarathons = () => {
                                             Update
                                         </button>
                                         <button
-                                            className="ml-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                                            className="ml-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
                                             onClick={() => handleDelete(marathon._id)}
+                                            disabled={deleting}
                                         >
-                                            Delete
+                                            {deleting ? 'Deleting...' : 'Delete'}
                                         </button>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+                </div>
+            )}
+
+            {showDeleteModal && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded shadow-md">
+                        <h3 className="text-lg font-semibold mb-4 text-black dark:text-gray-200">
+                            Are you sure you want to delete this marathon?
+                        </h3>
+                        <div className="flex justify-end">
+                            <button
+                                className="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-black dark:text-gray-200 rounded mr-2"
+                                onClick={() => setShowDeleteModal(false)}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className="px-4 py-2 bg-red-500 text-white rounded"
+                                onClick={confirmDelete}
+                            >
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

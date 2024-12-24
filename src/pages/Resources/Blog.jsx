@@ -5,7 +5,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const Blog = () => {
+    // Set document title using useEffect
     useEffect(() => {
+        document.title = 'Blog - Marathon_240'; // Set document title
         // GSAP Animations for Title and Blog Posts
         gsap.fromTo(
             ".blog-title",
@@ -106,7 +108,7 @@ const Blog = () => {
                     {/* Blog Post 5 */}
                     <div className="blog-post bg-white dark:bg-zinc-700 p-8 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300">
                         <img
-                            src=" https://images.pexels.com/photos/3763879/pexels-photo-3763879.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            src="https://images.pexels.com/photos/3763879/pexels-photo-3763879.jpeg?auto=compress&cs=tinysrgb&w=600"
                             alt="Marathon Recovery"
                             className="w-full h-48 object-cover rounded-lg mb-6"
                         />

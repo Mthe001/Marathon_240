@@ -6,6 +6,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const GearRecommendations = () => {
     useEffect(() => {
+
+        document.title = 'Gear Recommendations - Marathon_240'; // Set
+
         // GSAP Animation for Gear Items
         gsap.fromTo(
             ".gear-item",

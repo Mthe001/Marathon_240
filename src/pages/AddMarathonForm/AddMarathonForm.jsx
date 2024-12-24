@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';  // Import useLocation hook
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'tailwindcss/tailwind.css';
@@ -12,6 +13,18 @@ const AddMarathonForm = () => {
     const [marathonStartDate, setMarathonStartDate] = useState(null);
     const { user } = useAuth();
     const formRef = useRef(null);
+    const location = useLocation(); // Get the current location (URL)
+
+    // Set the document title based on the route
+    useEffect(() => {
+        if (location.pathname === '/add_marathon') {
+            document.title = 'Create Marathon - Marathon Management'; // Title for the "Add Marathon" route
+        } else if (location.pathname === '/other-route') {
+            document.title = 'Other Page - Marathon Management'; // Change for other routes
+        } else {
+            document.title = 'Marathon Management'; // Default title
+        }
+    }, [location.pathname]); // Dependency array ensures this effect runs whenever the route changes
 
     const handleSubmit = async (e) => {
         e.preventDefault();

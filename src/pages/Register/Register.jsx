@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext/AuthContext';
 import Swal from 'sweetalert2';
@@ -9,8 +9,10 @@ const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false); // For toggling confirm password visibility
 
-
-
+    // Set document title using useEffect
+    useEffect(() => {
+        document.title = 'Registration - Collade'; // Set document title
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -54,11 +56,6 @@ const Register = () => {
                 Swal.fire('Error', 'Error registering user. Please try again.', 'error');
             });
     };
-
-
-
-
-
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-zinc-900 text-black dark:text-white">

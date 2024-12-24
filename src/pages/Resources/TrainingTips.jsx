@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TrainingTips = () => {
     useEffect(() => {
+        document.title = 'Training Tips - Marathon_240'; // Set the title to "Training Tips - Marathon_240"
         // GSAP Animations for Title and Tips
         gsap.fromTo(
             ".training-title",

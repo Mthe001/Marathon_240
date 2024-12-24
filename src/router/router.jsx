@@ -17,6 +17,8 @@ import MyApply from "../pages/MyApply/MyApply";
 import MyMarathon from "../pages/MyMarathon/MyMarathon";
 import UpdateMyMarathon from "../pages/UpdateMyMarathon/UpdateMyMarathon";
 import ForgotPassWord from "../pages/SignIn/ForgotPassWord";
+import CharityEvents from "../pages/Events/CharityEvents";
+import RaceResults from "../pages/Events/RaceResults";
 
 
 
@@ -75,6 +77,14 @@ const router = createBrowserRouter([
             {
                 path: '/gear-recommendations',
                 element: <GearRecommendations />,
+            },
+            {
+                path: '/charity_events',
+                element: <CharityEvents />,
+            },
+            {
+                path: '/race-results',
+                element: <RaceResults />,
             },
             {
                 path: '/register',

@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { IoArrowBack } from 'react-icons/io5'; // Import back icon
 import AuthContext from '../../context/AuthContext/AuthContext';
 import Swal from 'sweetalert2'; // For showing alerts
 
@@ -10,6 +11,11 @@ const ForgotPassword = () => {
 
     // Accessing AuthContext from AuthProvider
     const { forgotPassword } = useContext(AuthContext);
+
+    // Dynamic document title
+    useEffect(() => {
+        document.title = 'Forgot Password - Collade'; // Set document title
+    }, []);
 
     // Handle form submission to send password reset email
     const handleSubmit = (e) => {
@@ -30,8 +36,22 @@ const ForgotPassword = () => {
             });
     };
 
+    // Handle back button navigation
+    const handleBack = () => {
+        navigate(-1); // Go back to the previous page
+    };
+
     return (
         <div className="max-w-md mx-auto p-6 border border-gray-700 rounded-xl shadow-lg bg-zinc-800">
+            {/* Back button */}
+            <button
+                onClick={handleBack}
+                className="flex items-center space-x-2 text-blue-500 hover:underline mb-4"
+            >
+                <IoArrowBack size={20} /> {/* Back Icon */}
+                <span>Back</span>
+            </button>
+
             <h2 className="text-3xl font-bold text-center mb-6 text-white">Forgot Password</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>

@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const NutritionsGuides = () => {
     useEffect(() => {
+        document.title = 'Nutrition Guides - Marathon_240'; // Set the title to "Nutrition Guides - Marathon_240"
         // GSAP Animations for Title and Nutrition Tips
         gsap.fromTo(
             ".nutrition-title",

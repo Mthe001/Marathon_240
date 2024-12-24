@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { useLocation, useNavigate, Link } from 'react-router-dom'; // Import Link for navigation
 import AuthContext from '../../context/AuthContext/AuthContext';
@@ -12,6 +12,11 @@ const SignIn = () => {
 
     // If there is a state from the previous page (e.g., an attempt to access a protected route), we will redirect there after login.
     const from = location.state?.from || '/'; // Default to '/' if no state is provided.
+
+    // Dynamic document title
+    useEffect(() => {
+        document.title = 'Sign In - MyApp'; // Replace "MyApp" with your app name
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();

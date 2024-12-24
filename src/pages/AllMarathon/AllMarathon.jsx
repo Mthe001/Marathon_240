@@ -23,6 +23,9 @@ const AllMarathon = () => {
         };
 
         fetchMarathons(); // Fetch marathons on component mount
+
+        // Set the document title to 'All Marathon'
+        document.title = 'All Marathon';
     }, []);
 
     // If loading, display a loading message

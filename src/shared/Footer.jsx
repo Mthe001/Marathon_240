@@ -35,7 +35,7 @@ const Footer = () => {
                             Virtual Runs
                         </Link>
                         <Link
-                            to="/charity-events"
+                            to="/charity_events"
                             className="block link-hover text-gray-600 dark:text-gray-300 hover:text-blue-500 transition duration-300"
                         >
                             Charity Events
