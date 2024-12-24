@@ -6,12 +6,13 @@ const AllMarathon = () => {
     const [marathons, setMarathons] = useState([]); // State to hold marathons data
     const [loading, setLoading] = useState(true); // State to manage loading state
     const [error, setError] = useState(null); // State to manage error state
+    const [sortOrder, setSortOrder] = useState('desc'); // State for sort order ('desc' or 'asc')
 
     // Fetch marathons from the API
     useEffect(() => {
         const fetchMarathons = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/marathons', {
+                const response = await axios.get(`http://localhost:5000/marathons?sort=${sortOrder}`, {
                     withCredentials: true, // Include credentials (cookies)
                 });
                 setMarathons(response.data); // Set the marathon data
@@ -26,7 +27,12 @@ const AllMarathon = () => {
 
         // Set the document title to 'All Marathon'
         document.title = 'All Marathon';
-    }, []);
+    }, [sortOrder]); // Refetch data when sortOrder changes
+
+    // Function to handle sort order change
+    const handleSortChange = (e) => {
+        setSortOrder(e.target.value);
+    };
 
     // If loading, display a loading message
     if (loading) {
@@ -40,6 +46,22 @@ const AllMarathon = () => {
 
     return (
         <div>
+            {/* Sort Options */}
+            <div className="flex justify-end p-8">
+                <label htmlFor="sortOrder" className="mr-4 text-lg font-semibold text-gray-800 dark:text-gray-200">
+                    Sort by:
+                </label>
+                <select
+                    id="sortOrder"
+                    value={sortOrder}
+                    onChange={handleSortChange}
+                    className="p-2 rounded-md border border-gray-400 dark:border-gray-600 bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-200"
+                >
+                    <option value="desc">Newest to Oldest</option>
+                    <option value="asc">Oldest to Newest</option>
+                </select>
+            </div>
+
             {/* Show Marathon List */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
                 {marathons.map((marathon) => (
