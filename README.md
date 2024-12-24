@@ -62,7 +62,7 @@ Key purposes include:
 ## 🌐 Demo & Links
 
 - **Live Demo**: [Marathon_240 Live Site](https://yourlivesite.com)
-- **GitHub Repository**: [Marathon_240 GitHub Repo](https://github.com/yourgithub)
+- **GitHub Repository**: [Marathon_240 GitHub Repo](https://github.com/programming-hero-web-course2/b10a11-server-side-Mthe001)
 
 ---
 
