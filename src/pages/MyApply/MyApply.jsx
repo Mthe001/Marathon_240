@@ -3,44 +3,59 @@ import axios from 'axios';
 import AuthContext from '../../context/AuthContext/AuthContext';
 
 const MyApply = () => {
-    const { user } = useContext(AuthContext); // Get the logged-in user from context
+    const { user } = useContext(AuthContext);
     const [registrations, setRegistrations] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [selectedRegistration, setSelectedRegistration] = useState(null); // For updating
-    const [showUpdateModal, setShowUpdateModal] = useState(false); // Modal visibility for update
-    const [showDeleteModal, setShowDeleteModal] = useState(false); // Modal visibility for delete
-    const [deleteId, setDeleteId] = useState(null); // Store registration ID for deletion
+    const [selectedRegistration, setSelectedRegistration] = useState(null);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [deleteId, setDeleteId] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredRegistrations, setFilteredRegistrations] = useState([]);
 
     useEffect(() => {
-        document.title = 'My Marathon Registrations'; // Set the document title
+        document.title = 'My Marathon Registrations';
 
         const fetchRegistrations = async () => {
             try {
-                // Fetch the user's registration data
+                setLoading(true);
                 const response = await axios.get('http://localhost:5000/my-registrations', {
-                    withCredentials: true, // Include credentials (cookies)
+                    withCredentials: true,
                 });
-
                 setRegistrations(response.data);
+                setFilteredRegistrations(response.data);
                 setLoading(false);
-            } catch (err) {
-                console.error('Error fetching registrations:', err);
-                setError('You dont have any registrations yet.');
+            } catch {
+                setError('Failed to fetch your registrations. Please try again later.');
                 setLoading(false);
             }
         };
 
         if (user) {
-            fetchRegistrations(); // Fetch the data if the user is logged in
+            fetchRegistrations();
         } else {
             setError('You need to be logged in to see your registrations.');
             setLoading(false);
         }
     }, [user]);
 
+    const handleSearch = (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        setSearchTerm(searchTerm);
+
+        if (searchTerm.trim() === '') {
+            setFilteredRegistrations(registrations);
+        } else {
+            const filtered = registrations.filter((reg) =>
+                reg.marathonTitle.toLowerCase().includes(searchTerm)
+            );
+            setFilteredRegistrations(filtered);
+        }
+    };
+
     const handleUpdate = (registration) => {
-        setSelectedRegistration({ ...registration }); // Copy the registration object to prevent reference issues
+        setSelectedRegistration({ ...registration });
         setShowUpdateModal(true);
     };
 
@@ -53,31 +68,34 @@ const MyApply = () => {
         try {
             await axios.delete(`http://localhost:5000/registrations/${deleteId}`, { withCredentials: true });
             setRegistrations((prev) => prev.filter((reg) => reg._id !== deleteId));
-            setShowDeleteModal(false); // Close delete modal
-        } catch (err) {
-            console.error('Error deleting registration:', err);
+            setFilteredRegistrations((prev) => prev.filter((reg) => reg._id !== deleteId));
+            setShowDeleteModal(false);
+        } catch {
             alert('Failed to delete the registration.');
         }
     };
 
     const handleSaveUpdate = async (updatedRegistration) => {
         try {
-            // Prepare the data to update
             const updatedData = {
-                _id: updatedRegistration._id,  // Include the unique ID for the update
+                _id: updatedRegistration._id,
                 firstName: updatedRegistration.firstName,
                 contactNumber: updatedRegistration.contactNumber,
-                additionalInfo: updatedRegistration.additionalInfo  // Include any other fields if necessary
+                additionalInfo: updatedRegistration.additionalInfo,
             };
 
-            // Send the updated data to the backend
-            await axios.put(`http://localhost:5000/registrations/${updatedRegistration._id}`, updatedData, { withCredentials: true });
+            await axios.put(`http://localhost:5000/registrations/${updatedRegistration._id}`, updatedData, {
+                withCredentials: true,
+            });
 
-            // Update the state with the updated registration data
-            setRegistrations((prev) => prev.map((reg) => reg._id === updatedRegistration._id ? updatedRegistration : reg));
-            setShowUpdateModal(false); // Close the update modal
-        } catch (err) {
-            console.error('Error updating registration:', err.response || err);
+            setRegistrations((prev) =>
+                prev.map((reg) => (reg._id === updatedRegistration._id ? updatedRegistration : reg))
+            );
+            setFilteredRegistrations((prev) =>
+                prev.map((reg) => (reg._id === updatedRegistration._id ? updatedRegistration : reg))
+            );
+            setShowUpdateModal(false);
+        } catch {
             alert('Failed to update the registration.');
         }
     };
@@ -95,54 +113,76 @@ const MyApply = () => {
             <h2 className="text-3xl font-bold mb-6 text-center text-black dark:text-gray-200">
                 My Marathon Registrations
             </h2>
-            {/* Show User Email */}
             {user && user.email && (
                 <div className="text-center mb-4 text-black dark:text-gray-300">
                     <strong>Email: </strong>{user.email}
                 </div>
             )}
+            <div className="mb-4">
+                <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={handleSearch}
+                    placeholder="Search by Marathon Title"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-zinc-700 dark:text-gray-200"
+                />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+                {filteredRegistrations.length > 0 ? (
+                    filteredRegistrations.map((registration) => (
+                        <div key={registration._id} className="bg-white dark:bg-zinc-700 p-4 rounded-lg shadow-lg">
+                            <h3 className="text-lg font-semibold text-black dark:text-gray-200">
+                                {registration.marathonTitle || 'N/A'}
+                            </h3>
+                            <p className="text-sm text-black dark:text-gray-300">
+                                <strong>Name: </strong>{registration.firstName}
+                            </p>
+                            <p className="text-sm text-black dark:text-gray-300">
+                                <strong>Contact: </strong>{registration.contactNumber}
+                            </p>
+                            <p className="text-sm text-black dark:text-gray-300">
+                                <strong>Additional Info: </strong>{registration.additionalInfo || 'N/A'}
+                            </p>
+                            <p className="text-sm text-black dark:text-gray-300">
+                                <strong>Start Date: </strong>{registration.marathonStartDate
+                                    ? new Date(registration.marathonStartDate).toLocaleDateString()
+                                    : 'N/A'}
+                            </p>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-center text-gray-500 dark:text-gray-300">
+                        No marathon registrations found to display.
+                    </p>
+                )}
+            </div>
 
-            {/* Table to display registrations */}
-            <div className="overflow-x-auto">
-                <table className="table-auto w-full text-left border-collapse border border-gray-200 dark:border-gray-700">
-                    <thead className="bg-gray-100 dark:bg-zinc-700">
-                        <tr>
-                            <th className="px-4 py-2 text-black dark:text-gray-200">Serial No.</th>
-                            <th className="px-4 py-2 text-black dark:text-gray-200">Marathon</th>
-                            <th className="px-4 py-2 text-black dark:text-gray-200">First Name</th>
-                            <th className="px-4 py-2 text-black dark:text-gray-200">Contact</th>
-                            <th className="px-4 py-2 text-black dark:text-gray-200">Additional Info</th>
-                            <th className="px-4 py-2 text-black dark:text-gray-200">Start Date</th>
-                            <th className="px-4 py-2 text-black dark:text-gray-200">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {registrations.length > 0 ? (
-                            registrations.map((registration, index) => (
+            {searchTerm.trim() !== '' && (
+                <div className="overflow-x-auto mt-8">
+                    <table className="table-auto w-full text-left border-collapse border border-gray-200 dark:border-gray-700">
+                        <thead className="bg-gray-100 dark:bg-zinc-700">
+                            <tr>
+                                <th className="px-4 py-2 text-black dark:text-gray-200">Serial No.</th>
+                                <th className="px-4 py-2 text-black dark:text-gray-200">Marathon</th>
+                                <th className="px-4 py-2 text-black dark:text-gray-200">First Name</th>
+                                <th className="px-4 py-2 text-black dark:text-gray-200">Contact</th>
+                                <th className="px-4 py-2 text-black dark:text-gray-200">Additional Info</th>
+                                <th className="px-4 py-2 text-black dark:text-gray-200">Start Date</th>
+                                <th className="px-4 py-2 text-black dark:text-gray-200">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredRegistrations.map((registration, index) => (
                                 <tr key={registration._id} className="border-t border-gray-200 dark:border-gray-700">
+                                    <td className="px-4 py-2 text-black dark:text-gray-300">{index + 1}</td>
+                                    <td className="px-4 py-2 text-black dark:text-gray-300">{registration.marathonTitle || 'N/A'}</td>
+                                    <td className="px-4 py-2 text-black dark:text-gray-300">{registration.firstName}</td>
+                                    <td className="px-4 py-2 text-black dark:text-gray-300">{registration.contactNumber}</td>
                                     <td className="px-4 py-2 text-black dark:text-gray-300">
-                                        {index + 1} {/* Display Serial No. */}
+                                        {registration.additionalInfo || 'N/A'}
                                     </td>
                                     <td className="px-4 py-2 text-black dark:text-gray-300">
-                                        {registration.marathonTitle || 'N/A'}
-                                    </td>
-                                    <td className="px-4 py-2 text-black dark:text-gray-300">
-                                        {registration.firstName}
-                                    </td>
-                                    <td className="px-4 py-2 text-black dark:text-gray-300">
-                                        {registration.contactNumber} {/* Display contact number */}
-                                    </td>
-                                    <td className="px-4 py-2 text-black dark:text-gray-300">
-                                        {registration.additionalInfo
-                                            ? registration.additionalInfo.length > 30
-                                                ? `${registration.additionalInfo.substring(0, 30)}...`
-                                                : registration.additionalInfo
-                                            : 'N/A'}
-                                    </td>
-                                    <td className="px-4 py-2 text-black dark:text-gray-300">
-                                        {registration.marathonStartDate
-                                            ? new Date(registration.marathonStartDate).toLocaleDateString()
-                                            : 'N/A'} {/* Display the start date */}
+                                        {registration.marathonStartDate ? new Date(registration.marathonStartDate).toLocaleDateString() : 'N/A'}
                                     </td>
                                     <td className="px-4 py-2">
                                         <button
@@ -159,106 +199,74 @@ const MyApply = () => {
                                         </button>
                                     </td>
                                 </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td
-                                    colSpan="7"
-                                    className="px-4 py-4 text-center text-gray-500 dark:text-gray-400"
-                                >
-                                    You have not registered for any marathons yet.
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
 
-            {/* Modal for updating registration */}
             {showUpdateModal && selectedRegistration && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white dark:bg-zinc-800 rounded-lg p-6 max-w-md w-full shadow-lg">
-                        <h3 className="text-2xl font-bold mb-4 text-black dark:text-gray-200">
-                            Update Registration
-                        </h3>
-                        <form
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                handleSaveUpdate(selectedRegistration);  // Handle form submission
-                            }}
-                        >
-                            <div className="mb-4">
-                                <label className="block text-black dark:text-gray-300">First Name:</label>
-                                <input
-                                    type="text"
-                                    value={selectedRegistration.firstName}  // Bind the first name
-                                    onChange={(e) => setSelectedRegistration({ ...selectedRegistration, firstName: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-zinc-700 dark:text-gray-200"
-                                />
-                            </div>
-
-                            <div className="mb-4">
-                                <label className="block text-black dark:text-gray-300">Contact Number:</label>
-                                <input
-                                    type="number"
-                                    value={selectedRegistration.contactNumber}  // Bind the contact number
-                                    onChange={(e) => setSelectedRegistration({ ...selectedRegistration, contactNumber: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-zinc-700 dark:text-gray-200"
-                                />
-                            </div>
-
-                            <div className="mb-4">
-                                <label className="block text-black dark:text-gray-300">Additional Information:</label>
-                                <input
-                                    type="text"
-                                    value={selectedRegistration.additionalInfo}  // Bind the additional info
-                                    onChange={(e) => setSelectedRegistration({ ...selectedRegistration, additionalInfo: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-zinc-700 dark:text-gray-200"
-                                />
-                            </div>
-
-                            <div className="flex justify-end">
-                                <button
-                                    type="button"
-                                    className="px-4 py-2 bg-gray-400 text-black dark:text-gray-200 rounded hover:bg-gray-500"
-                                    onClick={() => setShowUpdateModal(false)}
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="ml-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                                >
-                                    Save
-                                </button>
-                            </div>
+                <div className="fixed inset-0 flex justify-center items-center bg-gray-700 bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                        <h3 className="text-xl font-bold mb-4 text-center text-black dark:text-gray-200">Update Registration</h3>
+                        <form onSubmit={(e) => { e.preventDefault(); handleSaveUpdate(selectedRegistration); }}>
+                            <input
+                                type="text"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-zinc-700 dark:text-gray-200"
+                                value={selectedRegistration.firstName}
+                                onChange={(e) => setSelectedRegistration({ ...selectedRegistration, firstName: e.target.value })}
+                                required
+                            />
+                            <input
+                                type="text"
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-zinc-700 dark:text-gray-200 mt-4"
+                                value={selectedRegistration.contactNumber}
+                                onChange={(e) => setSelectedRegistration({ ...selectedRegistration, contactNumber: e.target.value })}
+                                placeholder="Contact Number"
+                                required
+                            />
+                            <textarea
+                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-zinc-700 dark:text-gray-200 mt-4"
+                                value={selectedRegistration.additionalInfo || ''}
+                                onChange={(e) => setSelectedRegistration({ ...selectedRegistration, additionalInfo: e.target.value })}
+                                placeholder="Additional Info"
+                            />
+                            <button
+                                type="submit"
+                                className="mt-4 w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                            >
+                                Save Update
+                            </button>
                         </form>
+                        <button
+                            className="mt-4 w-full px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500"
+                            onClick={() => setShowUpdateModal(false)}
+                        >
+                            Cancel
+                        </button>
                     </div>
                 </div>
             )}
 
-            {/* Modal for confirming deletion */}
             {showDeleteModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white dark:bg-zinc-800 rounded-lg p-6 max-w-md w-full shadow-lg">
-                        <h3 className="text-2xl font-bold mb-4 text-black dark:text-gray-200">
-                            Confirm Deletion
-                        </h3>
-                        <p className="mb-6 text-black dark:text-gray-300">
+                <div className="fixed inset-0 flex justify-center items-center bg-gray-700 bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                        <h3 className="text-xl font-bold mb-4 text-center text-black dark:text-gray-200">Confirm Deletion</h3>
+                        <p className="text-black dark:text-gray-300">
                             Are you sure you want to delete this registration?
                         </p>
-                        <div className="flex justify-end">
+                        <div className="mt-4 flex justify-around">
                             <button
-                                className="px-4 py-2 bg-gray-400 text-black dark:text-gray-200 rounded hover:bg-gray-500"
+                                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                                onClick={confirmDelete}
+                            >
+                                Yes, Delete
+                            </button>
+                            <button
+                                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
                                 onClick={() => setShowDeleteModal(false)}
                             >
                                 Cancel
-                            </button>
-                            <button
-                                className="ml-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                                onClick={confirmDelete}
-                            >
-                                Delete
                             </button>
                         </div>
                     </div>
