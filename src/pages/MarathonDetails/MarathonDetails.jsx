@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'; // Importing the timer component
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import AuthContext from '../../context/AuthContext/AuthContext';
 
 const MarathonDetails = () => {
-    const marathon = useLoaderData(); // Marathon data fetched by the loader
+    const marathon = useLoaderData();
     const navigate = useNavigate();
 
-    const { user } = useContext(AuthContext); // Logged-in user context
-    const email = user ? user.email : ''; // Get the user's email
-    const token = user ? user.token : ''; // User's token (if needed)
+    const { user } = useContext(AuthContext);
+    const email = user ? user.email : '';
 
     const [registrationOpen, setRegistrationOpen] = useState(false);
     const [registrationCount, setRegistrationCount] = useState(marathon.totalRegistrationCount || 0);
@@ -36,8 +36,8 @@ const MarathonDetails = () => {
             lastName: e.target.lastName.value,
             contactNumber: e.target.contactNumber.value,
             additionalInfo: e.target.additionalInfo.value,
-            marathonTitle: marathon.title, // Adding marathon title to form data
-            marathonStartDate: marathon.marathonStartDate, // Adding marathon start date to form data
+            marathonTitle: marathon.title,
+            marathonStartDate: marathon.marathonStartDate,
         };
 
         try {
@@ -49,7 +49,7 @@ const MarathonDetails = () => {
             });
 
             if (response.status === 201) {
-                // Fetch the updated registration count from the server
+
                 const updatedMarathon = await axios.get(`http://localhost:5000/marathons/${marathon._id}`);
                 setRegistrationCount(updatedMarathon.data.totalRegistrationCount);
 
@@ -80,8 +80,38 @@ const MarathonDetails = () => {
         }
     };
 
+
+    const getTimeUntilStart = () => {
+        const now = new Date();
+        const marathonStartDate = new Date(marathon.marathonStartDate);
+        const remainingTime = (marathonStartDate - now) / 1000;
+        return remainingTime > 0 ? remainingTime : 0;
+    };
+
+    // Renderer for countdown time
+    const renderTime = ({ remainingTime }) => {
+        if (remainingTime <= 0) {
+            return <div className="text-lg font-semibold">Marathon Started!</div>;
+        }
+
+        const days = Math.floor(remainingTime / (24 * 60 * 60));
+        const hours = Math.floor((remainingTime % (24 * 60 * 60)) / (60 * 60));
+        const minutes = Math.floor((remainingTime % (60 * 60)) / 60);
+        const seconds = Math.floor(remainingTime % 60);
+
+        return (
+            <div className="flex flex-col items-center">
+                <div className="text-lg font-semibold dark:text-white">
+                    {days}<span className='dark:text-green-500 text-orange-600'>d</span> {hours}<span className='dark:text-yellow-400 text-green-400'>h</span> {minutes}<span className='dark:text-orange-500 text-purple-600'>m</span> {seconds}<span className='dark:text-red-500 text-blue-600'>s</span>
+                </div>
+                <p className="text-sm dark:text-gray-200 dark:font-semibold">Until Marathon Starts</p>
+            </div>
+        );
+    };
+
+
     return (
-        <div className="marathon-details p-8 bg-white dark:bg-zinc-800 rounded-lg shadow-2xl max-w-4xl mx-auto mt-8 my-24">
+        <div className="marathon-details p-8 bg-white dark:bg-zinc-800 rounded-lg shadow-2xl w-10/12  md:w-9/12 lg:w-9/12 mx-auto mt-8 my-24">
             <div className="mb-4">
                 <button
                     onClick={() => navigate(-1)} // Navigate back to the previous page
@@ -95,9 +125,9 @@ const MarathonDetails = () => {
                         stroke="currentColor"
                     >
                         <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
                             d="M15 19l-7-7 7-7"
                         />
                     </svg>
@@ -118,6 +148,19 @@ const MarathonDetails = () => {
                     className="w-full rounded-lg shadow-lg mb-6"
                 />
             )}
+
+            {/* Countdown Timer */}
+            <div className="flex justify-center mb-6">
+                <CountdownCircleTimer
+                    isPlaying
+                    duration={getTimeUntilStart()} // Remaining time in seconds
+                    colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+                    colorsTime={[7 * 24 * 60 * 60, 2 * 24 * 60 * 60, 1 * 24 * 60 * 60, 0]}
+                    size={180}
+                >
+                    {renderTime}
+                </CountdownCircleTimer>
+            </div>
 
             {/* Marathon Information */}
             <div className="marathon-info grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
@@ -166,34 +209,6 @@ const MarathonDetails = () => {
                                 readOnly
                                 className="w-full p-3 mt-2 rounded-lg border dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
                                 placeholder="Enter your email"
-                                required
-                            />
-                        </div>
-
-                        {/* Marathon Title */}
-                        <div>
-                            <label className="font-semibold text-black dark:text-gray-300">Marathon Title:</label>
-                            <input
-                                type="text"
-                                name="marathonTitle"
-                                value={marathon.title}
-                                readOnly
-                                className="w-full p-3 mt-2 rounded-lg border dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
-                                placeholder="Marathon Title"
-                                required
-                            />
-                        </div>
-
-                        {/* Marathon Start Date */}
-                        <div>
-                            <label className="font-semibold text-black dark:text-gray-300">Marathon Start Date:</label>
-                            <input
-                                type="text"
-                                name="marathonStartDate"
-                                value={new Date(marathon.marathonStartDate).toLocaleDateString()}
-                                readOnly
-                                className="w-full p-3 mt-2 rounded-lg border dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
-                                placeholder="Start Date"
                                 required
                             />
                         </div>
