@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FaArrowLeft } from 'react-icons/fa'; // Import the back icon
 
 const UpdateMyMarathon = () => {
     const { id } = useParams();
@@ -28,7 +29,7 @@ const UpdateMyMarathon = () => {
                 setFormData({
                     title: data.title,
                     location: data.location,
-                    runningDistance: data.runningDistance || '',  // Ensure default value is set if runningDistance is missing
+                    runningDistance: data.runningDistance || '', // Ensure default value is set if runningDistance is missing
                     description: data.description,
                     imageUrl: data.imageUrl
                 });
@@ -59,7 +60,7 @@ const UpdateMyMarathon = () => {
             },
             withCredentials: true, // Ensure credentials (cookies) are sent with the request
         })
-            .then((response) => {
+            .then(() => {
                 navigate('/all_marathon'); // Redirect to the all marathons page after successful update
             })
             .catch((error) => {
@@ -73,6 +74,14 @@ const UpdateMyMarathon = () => {
 
     return (
         <div className="p-6 max-w-4xl mx-auto bg-white dark:bg-zinc-800 rounded-lg shadow-lg">
+            {/* Back Button */}
+            <button
+                className="flex items-center text-blue-500 hover:text-blue-700 dark:text-blue-400 mb-4"
+                onClick={() => navigate(-1)} // Navigate back to the previous page
+            >
+                <FaArrowLeft className="mr-2" /> Back
+            </button>
+
             <h1 className="text-3xl font-bold text-center text-black dark:text-white mb-6">Update Marathon</h1>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -152,4 +161,3 @@ const UpdateMyMarathon = () => {
 };
 
 export default UpdateMyMarathon;
-
