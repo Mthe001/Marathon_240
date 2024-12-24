@@ -96,10 +96,10 @@ Marathon_240 is licensed under the MIT License. Feel free to use it, modify it, 
 
 ---
 
-## 🌍 Connect With Us
+## 🌍 Connect With Me
 
-Follow us on our social media channels for the latest updates, event news, and more!
+Follow me on social media channels for the latest updates, event news, and more!
 
-- **Instagram**: [@Marathon_240](https://instagram.com/Marathon_240)
-- **Twitter**: [@Marathon_240](https://twitter.com/Marathon_240)
-- **Facebook**: [Marathon 240](https://facebook.com/Marathon_240)
+- **Instagram**: [@Mthe](https://www.instagram.com/mtheredwan/)
+- **Twitter**: [@Mthe001](https://x.com/redwan_mahin68)
+- **Facebook**: [Md Redwanul Haque](https://www.facebook.com/mtheredwan)
