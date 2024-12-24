@@ -120,7 +120,7 @@ const Navbar = () => {
                     {/* Avatar and dropdown menu */}
                     {user ? (
                         <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar ">
                                 <div className="w-10 rounded-full">
                                     <img
                                         alt="User Avatar"
@@ -130,17 +130,22 @@ const Navbar = () => {
                             </div>
                             <ul
                                 tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow dark:bg-zinc-800"
                             >
                                 <li>
-                                    <a className="justify-between">
+
+                                    <Link className="justify-between btn btn-ghost dark:text-stone-400" to="/profile">
+
                                         Profile
                                         <span className="badge">New</span>
-                                    </a>
+                                    </Link>
                                 </li>
-                                <li><a>Settings</a></li>
+                                <Link className="justify-between btn btn-ghost dark:text-stone-300" to="/settings">
+                                    Settings
+                                    <span className='badge'>Hot</span>
+                                </Link>
                                 <li>
-                                    <a onClick={handleLogOut}>Logout</a>
+                                    <a className='justify-between btn btn-ghost dark:text-zinc-300' onClick={handleLogOut}>Logout</a>
                                 </li>
                             </ul>
                         </div>

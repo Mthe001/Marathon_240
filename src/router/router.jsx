@@ -19,6 +19,8 @@ import UpdateMyMarathon from "../pages/UpdateMyMarathon/UpdateMyMarathon";
 import ForgotPassWord from "../pages/SignIn/ForgotPassWord";
 import CharityEvents from "../pages/Events/CharityEvents";
 import RaceResults from "../pages/Events/RaceResults";
+import Profile from "../pages/ProfileRoute/Profile";
+import Settings from "../pages/ProfileRoute/Settings";
 
 
 
@@ -93,6 +95,14 @@ const router = createBrowserRouter([
             {
                 path: 'signIn',
                 element: <SignIn />
+            },
+            {
+                path: '/profile',
+                element: <PrivateRoute><Profile /></PrivateRoute>,
+            },
+            {
+                path: '/settings',
+                element: <PrivateRoute><Settings /></PrivateRoute>,
             },
             {
                 path: '/forgot-password',
