@@ -14,7 +14,9 @@ import TrainingTips from "../pages/Resources/TrainingTips";
 import NutritionsGuides from "../pages/Resources/NutritionsGuides";
 import GearRecommendations from "../pages/Resources/GearRecommendations";
 import MyApply from "../pages/MyApply/MyApply";
-import MyMarathons from "../MyMarathons/MyMarathons";
+import MyMarathon from "../pages/MyMarathon/MyMarathon";
+import UpdateMyMarathon from "../pages/UpdateMyMarathon/UpdateMyMarathon";
+
 
 
 const router = createBrowserRouter([
@@ -44,8 +46,14 @@ const router = createBrowserRouter([
             },
             {
                 path: '/my_marathon',
-                element: <PrivateRoute><MyMarathons /></PrivateRoute>,
+                element: <PrivateRoute><MyMarathon /></PrivateRoute>,
+
             },
+            {
+                path: '/update-marathon/:id',
+                element: <PrivateRoute><UpdateMyMarathon /></PrivateRoute>,
+            },
+
             {
                 path: '/my_apply',
                 element: <PrivateRoute><MyApply /></PrivateRoute>,
