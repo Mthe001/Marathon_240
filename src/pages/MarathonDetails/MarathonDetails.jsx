@@ -162,6 +162,7 @@ const MarathonDetails = () => {
                 </CountdownCircleTimer>
             </div>
 
+
             {/* Marathon Information */}
             <div className="marathon-info grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                 <div>
@@ -178,7 +179,26 @@ const MarathonDetails = () => {
                     </h3>
                     <p className="text-black dark:text-gray-400">{registrationCount}</p>
                 </div>
+                <div>
+                    <h3 className="text-xl font-semibold text-black dark:text-gray-300">
+                        Registration Start Date:
+                    </h3>
+                    <p className="text-black dark:text-gray-400">
+                        {new Date(marathon.startRegistrationDate).toLocaleDateString()}
+                    </p>
+                </div>
+                <div>
+                    <h3 className="text-xl font-semibold text-black dark:text-gray-300">
+                        Registration End Date:
+                    </h3>
+                    <p className="text-black dark:text-gray-400">
+                        {new Date(marathon.endRegistrationDate).toLocaleDateString()}
+                    </p>
+                </div>
             </div>
+
+
+
 
             {/* Register Button */}
             {registrationOpen && (
