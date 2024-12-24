@@ -3,6 +3,8 @@ import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../context/AuthContext/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
 import { FaMoon, FaSun } from 'react-icons/fa';  // Import theme icons from react-icons
+import { MdOutlineLogin } from 'react-icons/md';
+import { SiReacthookform } from 'react-icons/si';
 
 const Navbar = () => {
     const { user, logoutUser } = useContext(AuthContext);
@@ -144,11 +146,11 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div className="flex gap-2">
-                            <Link className="btn btn-outline" to="/register">
-                                Register
+                            <Link className="btn btn-outline dark:bg-gray-300 text-xl" to="/register">
+                                <SiReacthookform />
                             </Link>
-                            <Link className="btn btn-link" to="/signIn">
-                                Sign in
+                            <Link className="btn btn-outline dark:bg-slate-300 text-xl" to="/signIn">
+                                <MdOutlineLogin />
                             </Link>
                         </div>
                     )}
