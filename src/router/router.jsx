@@ -24,6 +24,7 @@ import Settings from "../pages/ProfileRoute/Settings";
 import VirtualRuns from "../pages/Events/VirtualRuns";
 import Faq from "../pages/Contact/Faq";
 import GetInTouch from "../pages/Contact/GetInTouch";
+import AboutUs from "../pages/Contact/AboutUs";
 
 
 
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
             {
                 path: '/contact',
                 element: <GetInTouch />,
+            },
+            {
+                path: '/about-us',
+                element: <AboutUs />,
             },
             {
                 path: '/register',
