@@ -22,6 +22,7 @@ import RaceResults from "../pages/Events/RaceResults";
 import Profile from "../pages/ProfileRoute/Profile";
 import Settings from "../pages/ProfileRoute/Settings";
 import VirtualRuns from "../pages/Events/VirtualRuns";
+import Faq from "../pages/Contact/Faq";
 
 
 
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
             {
                 path: '/virtual-runs',
                 element: <VirtualRuns />,
+            },
+            {
+                path: '/faqs',
+                element: <Faq />,
             },
             {
                 path: '/register',
