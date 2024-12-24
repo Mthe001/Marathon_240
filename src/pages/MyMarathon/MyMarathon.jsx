@@ -33,7 +33,7 @@ const MyMarathons = () => {
             setMarathons(response.data);
         } catch (err) {
             console.error('Error fetching marathons:', err);
-            setError('Failed to fetch marathon data');
+            setError('You dont have any marathons posted yet.');
         } finally {
             setLoading(false);
         }

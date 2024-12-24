@@ -26,7 +26,7 @@ const MyApply = () => {
                 setLoading(false);
             } catch (err) {
                 console.error('Error fetching registrations:', err);
-                setError('Failed to fetch your registration data');
+                setError('You dont have any registrations yet.');
                 setLoading(false);
             }
         };
