@@ -21,6 +21,7 @@ import CharityEvents from "../pages/Events/CharityEvents";
 import RaceResults from "../pages/Events/RaceResults";
 import Profile from "../pages/ProfileRoute/Profile";
 import Settings from "../pages/ProfileRoute/Settings";
+import VirtualRuns from "../pages/Events/VirtualRuns";
 
 
 
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
             {
                 path: '/race-results',
                 element: <RaceResults />,
+            },
+            {
+                path: '/virtual-runs',
+                element: <VirtualRuns />,
             },
             {
                 path: '/register',
