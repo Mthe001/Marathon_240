@@ -16,6 +16,7 @@ import GearRecommendations from "../pages/Resources/GearRecommendations";
 import MyApply from "../pages/MyApply/MyApply";
 import MyMarathon from "../pages/MyMarathon/MyMarathon";
 import UpdateMyMarathon from "../pages/UpdateMyMarathon/UpdateMyMarathon";
+import ForgotPassWord from "../pages/SignIn/ForgotPassWord";
 
 
 
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
                 path: 'signIn',
                 element: <SignIn />
             },
+            {
+                path: '/forgot-password',
+                element: <ForgotPassWord />,
+            }
         ],
 
     },

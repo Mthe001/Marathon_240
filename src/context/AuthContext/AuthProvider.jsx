@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import AuthContext from './AuthContext';
 import auth from '../../firebase/firebase.init';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider, updateProfile } from 'firebase/auth';
+import {
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut,
+    signInWithPopup,
+    GoogleAuthProvider,
+    updateProfile,
+    sendPasswordResetEmail
+} from 'firebase/auth';
 import axios from 'axios';
 
 const AuthProvider = ({ children }) => {
@@ -81,6 +90,22 @@ const AuthProvider = ({ children }) => {
             });
     };
 
+    // Forgot password function
+    const forgotPassword = (email) => {
+        setLoading(true);
+        return sendPasswordResetEmail(auth, email)
+            .then(() => {
+                console.log('Password reset email sent successfully');
+                setLoading(false);
+                return 'Password reset email sent successfully';
+            })
+            .catch((error) => {
+                console.error('Error sending password reset email:', error.message);
+                setLoading(false);
+                throw error;
+            });
+    };
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             if (currentUser) {
@@ -127,6 +152,7 @@ const AuthProvider = ({ children }) => {
         signinUser,
         logoutUser,
         googleSignIn,
+        forgotPassword, // Expose the forgotPassword function
     };
 
     return (
