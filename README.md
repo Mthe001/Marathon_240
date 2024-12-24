@@ -74,9 +74,9 @@ For any inquiries, suggestions, or support, feel free to reach out to us. We lov
 - **GitHub:** [Visit My Github Repo](https://github.com/Mthe001)
 - **Location:**  
   Marathon_240 Team  
-  123 Running St.,  
-  New York, NY, 10001,  
-  United States
+  Mymensingh210,  
+  Dhaka,  
+  Bangladesh
 
 ---
 
