@@ -27,7 +27,7 @@ const MyMarathons = () => {
             if (!user || !user.email) {
                 throw new Error('User is not authenticated or email is missing');
             }
-            const response = await axios.get('http://localhost:5000//my-marathons', {
+            const response = await axios.get('https://job-city-server-six.vercel.app/my-marathons', {
                 withCredentials: true,
             });
             setMarathons(response.data);
@@ -62,7 +62,7 @@ const MyMarathons = () => {
     const confirmDelete = async () => {
         setDeleting(true);
         try {
-            await axios.delete(`http://localhost:5000//marathons/${deleteId}`, { withCredentials: true });
+            await axios.delete(`https://job-city-server-six.vercel.app/marathons/${deleteId}`, { withCredentials: true });
             setMarathons((prev) => prev.filter((m) => m._id !== deleteId));
             setShowDeleteModal(false);
         } catch (err) {
