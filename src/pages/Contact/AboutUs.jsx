@@ -1,9 +1,27 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AboutUs = () => {
+    const navigate = useNavigate();  // Using useNavigate hook
+
+    // Back button click handler
+    const handleBack = () => {
+        navigate(-1);  // Go back to the previous page
+    };
+
     return (
-        <div className=" bg-gray-100 dark:bg-zinc-900 px-6 py-10 flex flex-col items-center">
+        <div className="bg-gray-100 dark:bg-zinc-900 px-6 py-10 flex flex-col items-center">
+
             <div className="card w-full max-w-7xl bg-white dark:bg-zinc-900 shadow-lg rounded-lg p-8">
+                <div>
+                    {/* Back Button */}
+                    <button
+                        onClick={handleBack}
+                        className="  text-sm btn btn-ghost px-4 py-2 text-gray-800  dark:text-white rounded-lg hover:bg-gray-700 focus:outline-none "
+                    >
+                        &larr; Back
+                    </button>
+                </div>
                 {/* Title Section */}
                 <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">
                     About Us

@@ -82,7 +82,7 @@ const GetInTouch = () => {
                 <div className="flex items-center justify-between mb-8">
                     {/* Back Button */}
                     <button
-                        onClick={() => navigate('/')} // Navigate to the previous page
+                        onClick={() => navigate(-1)} // Navigate to the previous page
                         className="btn btn-outline bg-transparent border-gray-600 dark:border-gray-300 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-700"
                     >
                         <IoArrowBackCircleOutline className="mr-2 text-lg" /> Back

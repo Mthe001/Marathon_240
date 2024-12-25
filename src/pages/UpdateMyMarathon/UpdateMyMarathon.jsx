@@ -61,7 +61,7 @@ const UpdateMyMarathon = () => {
             withCredentials: true, // Ensure credentials (cookies) are sent with the request
         })
             .then(() => {
-                navigate('/all_marathon'); // Redirect to the all marathons page after successful update
+                navigate('/dashboard/my_marathon'); // Redirect to the all marathons page after successful update
             })
             .catch((error) => {
                 console.error('Error updating marathon:', error.response ? error.response.data : error);
@@ -73,7 +73,7 @@ const UpdateMyMarathon = () => {
     }
 
     return (
-        <div className="p-6 max-w-4xl mx-auto bg-white dark:bg-zinc-800 rounded-lg shadow-lg">
+        <div className="p-6 w-10/12 mx-auto bg-white dark:bg-zinc-800 rounded-lg shadow-lg">
             {/* Back Button */}
             <button
                 className="flex items-center text-blue-500 hover:text-blue-700 dark:text-blue-400 mb-4"

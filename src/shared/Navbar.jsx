@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import AuthContext from '../context/AuthContext/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
 import { FaMoon, FaSun } from 'react-icons/fa';  // Import theme icons from react-icons
@@ -9,6 +9,7 @@ import { SiReacthookform } from 'react-icons/si';
 const Navbar = () => {
     const { user, logoutUser } = useContext(AuthContext);
     const { theme, toggleTheme } = useContext(ThemeContext);
+    const location = useLocation(); // Get the current route
 
     const [loading, setLoading] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -33,10 +34,8 @@ const Navbar = () => {
     const defaultPhotoUrl = "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp";
     const userPhotoUrl = user?.photoUrl || defaultPhotoUrl;
 
-
-
-
-
+    // Check if the current route is inside the Dashboard or its child routes
+    const isDashboardPage = location.pathname.startsWith('/dashboard');
 
     const links = (
         <>
@@ -53,37 +52,19 @@ const Navbar = () => {
                 </li>
             </NavLink>
 
-            {/* Show Add a Marathon link only if user is logged in */}
-            {user && user.email && (
-                <NavLink
-                    to="add_marathon"
-                    className={({ isActive }) =>
-                        isActive
-                            ? 'text-blue-500 font-bold'
-                            : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
-                    }
-                >
-                    <li>
-                        <a>Add a Marathon</a>
-                    </li>
-                </NavLink>
-            )}
-
-            {/* Show My Apply link only if user is logged in */}
-            {user && user.email && (
-                <NavLink
-                    to="/my_apply"
-                    className={({ isActive }) =>
-                        isActive
-                            ? 'text-blue-500 font-bold'
-                            : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
-                    }
-                >
-                    <li>
-                        <a>My Apply</a>
-                    </li>
-                </NavLink>
-            )}
+            {/* Show Dashboard link when the user is logged in */}
+            <NavLink
+                to="/dashboard"
+                className={({ isActive }) =>
+                    isActive
+                        ? 'text-blue-500 font-bold'
+                        : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
+                }
+            >
+                <li>
+                    <a>Dashboard</a>
+                </li>
+            </NavLink>
 
             <NavLink
                 to="/all_marathon"
@@ -97,32 +78,8 @@ const Navbar = () => {
                     <a>All Marathons</a>
                 </li>
             </NavLink>
-
-            {/* Show My Marathons link only if user is logged in */}
-            {user && user.email && (
-                <NavLink
-                    to="/my_marathon"
-                    className={({ isActive }) =>
-                        isActive
-                            ? 'text-blue-500 font-bold'
-                            : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
-                    }
-                >
-                    <li>
-                        <a>My Marathons</a>
-                    </li>
-                </NavLink>
-            )}
         </>
     );
-
-
-
-
-
-
-
-
 
     return (
         <div>
@@ -156,9 +113,7 @@ const Navbar = () => {
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow dark:bg-zinc-800"
                             >
                                 <li>
-
                                     <Link className="justify-between btn btn-ghost dark:text-stone-400" to="/profile">
-
                                         Profile
                                         <span className="badge">New</span>
                                     </Link>
@@ -218,7 +173,6 @@ const Navbar = () => {
             {/* Mobile menu dropdown */}
             {menuOpen && (
                 <div className="lg:hidden fixed top-0 left-0 w-64 h-full bg-base-100 dark:bg-zinc-800 p-4 z-10">
-
                     <ul className="menu menu-vertical p-2 space-y-2">
                         {links}
 

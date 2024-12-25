@@ -25,6 +25,7 @@ import VirtualRuns from "../pages/Events/VirtualRuns";
 import Faq from "../pages/Contact/Faq";
 import GetInTouch from "../pages/Contact/GetInTouch";
 import AboutUs from "../pages/Contact/AboutUs";
+import Dashboard from "../layout/Dashboard";
 
 
 
@@ -51,23 +52,29 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/marathons/${params.id}`)
             },
             {
-                path: '/add_marathon',
-                element: <PrivateRoute><AddMarathonForm /></PrivateRoute>,
+                path: '/dashboard',
+                element: <PrivateRoute><Dashboard /></PrivateRoute>,
+                children: [
+                    {
+                        path: '/dashboard/add_marathon',
+                        element: <PrivateRoute><AddMarathonForm /></PrivateRoute>,
 
-            },
-            {
-                path: '/my_marathon',
-                element: <PrivateRoute><MyMarathon /></PrivateRoute>,
+                    },
+                    {
+                        path: '/dashboard/my_marathon',
+                        element: <PrivateRoute><MyMarathon /></PrivateRoute>,
 
-            },
-            {
-                path: '/update-marathon/:id',
-                element: <PrivateRoute><UpdateMyMarathon /></PrivateRoute>,
-            },
+                    },
+                    {
+                        path: '/dashboard/update-marathon/:id',
+                        element: <PrivateRoute><UpdateMyMarathon /></PrivateRoute>,
+                    },
+                    {
+                        path: '/dashboard/my_apply',
+                        element: <PrivateRoute><MyApply /></PrivateRoute>,
+                    },
+                ]
 
-            {
-                path: '/my_apply',
-                element: <PrivateRoute><MyApply /></PrivateRoute>,
             },
             {
                 path: '/blog',

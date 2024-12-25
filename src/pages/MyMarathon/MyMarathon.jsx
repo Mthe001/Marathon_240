@@ -51,7 +51,7 @@ const MyMarathons = () => {
 
     const handleUpdate = (marathon) => {
         // Navigate to the update page and pass the marathon ID as a URL parameter
-        navigate(`/update-marathon/${marathon._id}`);
+        navigate(`/dashboard/update-marathon/${marathon._id}`);
     };
 
     const handleDelete = (id) => {
@@ -82,7 +82,7 @@ const MyMarathons = () => {
     }
 
     return (
-        <div className="p-4 sm:p-8 bg-white dark:bg-zinc-800 rounded-lg shadow-2xl max-w-6xl mx-auto mt-8 my-24">
+        <div className="p-4 sm:p-8 bg-white dark:bg-zinc-800 rounded-lg shadow-2xl w-11/12 mx-auto mt-8 my-24">
             <h2 className="text-3xl font-bold mb-6 text-center text-black dark:text-gray-200">
                 My Marathons
             </h2>

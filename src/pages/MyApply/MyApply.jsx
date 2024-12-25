@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../../context/AuthContext/AuthContext';
 
-
 const MyApply = () => {
     const { user } = useContext(AuthContext);
     const [registrations, setRegistrations] = useState([]);
@@ -110,7 +109,7 @@ const MyApply = () => {
     }
 
     return (
-        <div className="p-4 sm:p-8 bg-white dark:bg-zinc-800 rounded-lg shadow-2xl max-w-6xl mx-auto mt-8 my-24">
+        <div className="p-4 sm:p-8  bg-white dark:bg-zinc-800 rounded-lg shadow-2xl w-11/12 mx-auto mt-8 my-24">
             <h2 className="text-3xl font-bold mb-6 text-center text-black dark:text-gray-200">
                 My Marathon Registrations
             </h2>
@@ -128,6 +127,8 @@ const MyApply = () => {
                     className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded dark:bg-zinc-700 dark:text-gray-200"
                 />
             </div>
+
+            {/* Card Layout for Registrations */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
                 {filteredRegistrations.length > 0 ? (
                     filteredRegistrations.map((registration) => (
@@ -158,9 +159,10 @@ const MyApply = () => {
                 )}
             </div>
 
+            {/* Table Layout for Larger Screens */}
             {searchTerm.trim() !== '' && (
                 <div className="overflow-x-auto mt-8">
-                    <table className="table-auto w-full text-left border-collapse border border-gray-200 dark:border-gray-700">
+                    <table className="table-auto min-w-full text-left border-collapse border border-gray-200 dark:border-gray-700">
                         <thead className="bg-gray-100 dark:bg-zinc-700">
                             <tr>
                                 <th className="px-4 py-2 text-black dark:text-gray-200">Serial No.</th>
@@ -206,6 +208,7 @@ const MyApply = () => {
                 </div>
             )}
 
+            {/* Update Modal */}
             {showUpdateModal && selectedRegistration && (
                 <div className="fixed inset-0 flex justify-center items-center bg-gray-700 bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
@@ -249,6 +252,7 @@ const MyApply = () => {
                 </div>
             )}
 
+            {/* Delete Modal */}
             {showDeleteModal && (
                 <div className="fixed inset-0 flex justify-center items-center bg-gray-700 bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">

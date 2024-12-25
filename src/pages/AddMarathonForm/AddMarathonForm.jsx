@@ -110,7 +110,7 @@ const AddMarathonForm = () => {
     };
 
     return (
-        <div className="add-marathon p-8 bg-white dark:bg-zinc-950 rounded-lg shadow-2xl max-w-4xl mx-auto mt-8 my-24">
+        <div className="add-marathon p-8 w-11/12 bg-white dark:bg-zinc-900 rounded-lg shadow-2xl max-w-4xl mx-auto mt-8 my-24">
             <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-black dark:text-gray-200">
                 Create Marathon Event
             </h2>
