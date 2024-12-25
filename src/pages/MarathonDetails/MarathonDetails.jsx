@@ -41,7 +41,7 @@ const MarathonDetails = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000//register', {
+            const response = await axios.post('https://job-city-server-six.vercel.app/register', {
                 marathonId: marathon._id,
                 ...formData,
             }, {
@@ -50,7 +50,7 @@ const MarathonDetails = () => {
 
             if (response.status === 201) {
 
-                const updatedMarathon = await axios.get(`http://localhost:5000//marathons/${marathon._id}`);
+                const updatedMarathon = await axios.get(`https://job-city-server-six.vercel.app/marathons/${marathon._id}`);
                 setRegistrationCount(updatedMarathon.data.totalRegistrationCount);
 
                 Swal.fire({
