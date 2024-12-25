@@ -51,9 +51,7 @@ const Profile = () => {
                                 Phone: <span className="font-medium text-gray-800 dark:text-white">{user.phoneNumber}</span>
                             </p>
                         )}
-                        <p className="text-gray-500 dark:text-gray-300 text-lg mb-4">
-                            UID: <span className="font-medium text-gray-800 dark:text-white">{user.uid}</span>
-                        </p>
+
 
                         {/* Update Profile Button */}
                         <Link
