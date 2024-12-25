@@ -27,10 +27,11 @@ const MyApply = () => {
                 setFilteredRegistrations(response.data);
                 setLoading(false);
             } catch {
-                setError('Failed to fetch your registrations. Please try again later.');
+                setError('You are not registered for any marathons.');
                 setLoading(false);
             }
         };
+
 
         if (user) {
             fetchRegistrations();
