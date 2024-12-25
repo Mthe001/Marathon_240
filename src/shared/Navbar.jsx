@@ -33,6 +33,11 @@ const Navbar = () => {
     const defaultPhotoUrl = "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp";
     const userPhotoUrl = user?.photoUrl || defaultPhotoUrl;
 
+
+
+
+
+
     const links = (
         <>
             <NavLink
@@ -47,30 +52,38 @@ const Navbar = () => {
                     <a>Home</a>
                 </li>
             </NavLink>
-            <NavLink
-                to="add_marathon"
-                className={({ isActive }) =>
-                    isActive
-                        ? 'text-blue-500 font-bold'
-                        : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
-                }
-            >
-                <li>
-                    <a>Add a Marathon</a>
-                </li>
-            </NavLink>
-            <NavLink
-                to="/my_apply"
-                className={({ isActive }) =>
-                    isActive
-                        ? 'text-blue-500 font-bold'
-                        : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
-                }
-            >
-                <li>
-                    <a>My Apply</a>
-                </li>
-            </NavLink>
+
+            {/* Show Add a Marathon link only if user is logged in */}
+            {user && user.email && (
+                <NavLink
+                    to="add_marathon"
+                    className={({ isActive }) =>
+                        isActive
+                            ? 'text-blue-500 font-bold'
+                            : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
+                    }
+                >
+                    <li>
+                        <a>Add a Marathon</a>
+                    </li>
+                </NavLink>
+            )}
+
+            {/* Show My Apply link only if user is logged in */}
+            {user && user.email && (
+                <NavLink
+                    to="/my_apply"
+                    className={({ isActive }) =>
+                        isActive
+                            ? 'text-blue-500 font-bold'
+                            : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
+                    }
+                >
+                    <li>
+                        <a>My Apply</a>
+                    </li>
+                </NavLink>
+            )}
 
             <NavLink
                 to="/all_marathon"
@@ -84,20 +97,30 @@ const Navbar = () => {
                     <a>All Marathons</a>
                 </li>
             </NavLink>
-            <NavLink
-                to="/my_marathon"
-                className={({ isActive }) =>
-                    isActive
-                        ? 'text-blue-500 font-bold'
-                        : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
-                }
-            >
-                <li>
-                    <a>My Marathons</a>
-                </li>
-            </NavLink>
+
+            {/* Show My Marathons link only if user is logged in */}
+            {user && user.email && (
+                <NavLink
+                    to="/my_marathon"
+                    className={({ isActive }) =>
+                        isActive
+                            ? 'text-blue-500 font-bold'
+                            : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
+                    }
+                >
+                    <li>
+                        <a>My Marathons</a>
+                    </li>
+                </NavLink>
+            )}
         </>
     );
+
+
+
+
+
+
 
 
 

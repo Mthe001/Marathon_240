@@ -1,17 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';  // Import useLocation hook
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'tailwindcss/tailwind.css';
 import Swal from 'sweetalert2'; // Import SweetAlert2
-import useAuth from '../../hooks/useAuth'; // Import useAuth hook
+// Import useAuth hook
 import axios from 'axios'; // Import axios
+import AuthContext from '../../context/AuthContext/AuthContext';
 
 const AddMarathonForm = () => {
     const [startRegDate, setStartRegDate] = useState(null);
     const [endRegDate, setEndRegDate] = useState(null);
     const [marathonStartDate, setMarathonStartDate] = useState(null);
-    const { user } = useAuth();
+    const { user } = useContext(AuthContext);
     const formRef = useRef(null);
     const location = useLocation(); // Get the current location (URL)
 
