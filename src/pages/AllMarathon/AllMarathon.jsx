@@ -14,7 +14,7 @@ const AllMarathon = () => {
     const fetchMarathons = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`https://job-city-server-six.vercel.app/marathons`, {
+            const response = await axios.get(`http://localhost:5000//marathons`, {
                 params: {
                     sort: sortOrder,
                     page: currentPage,

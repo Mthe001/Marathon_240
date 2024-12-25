@@ -102,7 +102,7 @@ const MyApply = () => {
     };
 
     if (loading) {
-        return <div className="text-center text-gray-600 dark:text-gray-300">Loading...</div>;
+        return <div className="text-center text-gray-600 dark:text-gray-300"><span className="loading loading-infinity loading-lg"></span></div>;
     }
 
     if (error) {
