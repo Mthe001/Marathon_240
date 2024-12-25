@@ -1,19 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { useLocation, useNavigate, Link } from 'react-router-dom'; // Import Link for navigation
+import { FaGithub } from 'react-icons/fa'; // Import GitHub icon
 import AuthContext from '../../context/AuthContext/AuthContext';
 import axios from 'axios';
-import Swal from 'sweetalert2'; // For user-friendly alerts
 
 const SignIn = () => {
-    const { signinUser, googleSignIn } = useContext(AuthContext); // Include forgotPassword from context if needed
+    const { signinUser, googleSignIn, githubSignIn } = useContext(AuthContext); // Include GitHub sign-in from context
     const navigate = useNavigate(); // Initialize useNavigate hook
     const location = useLocation(); // Initialize useLocation hook
 
-    // If there is a state from the previous page (e.g., an attempt to access a protected route), we will redirect there after login.
     const from = location.state?.from || '/'; // Default to '/' if no state is provided.
 
-    // Dynamic document title
     useEffect(() => {
         document.title = 'Sign In - MyApp'; // Replace "MyApp" with your app name
     }, []);
@@ -50,7 +48,17 @@ const SignIn = () => {
             })
             .catch(error => {
                 console.error("Google Sign-In Error: ", error);
-                // Handle the error (e.g., show an error message to the user)
+            });
+    };
+
+    const handleGithubSignIn = () => {
+        githubSignIn()
+            .then(result => {
+                console.log("GitHub Sign-In successful", result);
+                navigate(from, { replace: true }); // Redirect after successful GitHub sign-in
+            })
+            .catch(error => {
+                console.error("GitHub Sign-In Error: ", error);
             });
     };
 
@@ -92,7 +100,6 @@ const SignIn = () => {
                             Remember me
                         </label>
                     </div>
-                    {/* Use Link to navigate to Forgot Password route */}
                     <Link to="/forgot-password" className="text-sm text-blue-500 hover:underline">
                         Forgot Password?
                     </Link>
@@ -108,9 +115,15 @@ const SignIn = () => {
                 <p className="text-sm text-gray-400 mb-4">Or sign in with</p>
                 <button
                     onClick={handleGoogleSignIn}
-                    className="flex items-center justify-center w-full py-3 px-6 border border-gray-600 rounded-lg shadow-sm bg-zinc-900 hover:bg-zinc-700 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white"
+                    className="flex items-center justify-center w-full py-3 px-6 border border-gray-600 rounded-lg shadow-sm bg-zinc-900 hover:bg-zinc-700 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white mb-4"
                 >
                     <FcGoogle className="text-2xl mr-2" /> Sign in with Google
+                </button>
+                <button
+                    onClick={handleGithubSignIn}
+                    className="flex items-center justify-center w-full py-3 px-6 border border-gray-600 rounded-lg shadow-sm bg-zinc-900 hover:bg-zinc-700 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white"
+                >
+                    <FaGithub className="text-2xl mr-2" /> Sign in with GitHub
                 </button>
             </div>
             <p className="mt-6 text-center text-sm text-gray-400">
