@@ -20,7 +20,7 @@ const MyApply = () => {
         const fetchRegistrations = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://localhost:5000/my-registrations', {
+                const response = await axios.get('https://job-city-server-six.vercel.app/my-registrations', {
                     withCredentials: true,
                 });
                 setRegistrations(response.data);
@@ -67,7 +67,7 @@ const MyApply = () => {
 
     const confirmDelete = async () => {
         try {
-            await axios.delete(`http://localhost:5000/registrations/${deleteId}`, { withCredentials: true });
+            await axios.delete(`https://job-city-server-six.vercel.app/registrations/${deleteId}`, { withCredentials: true });
             setRegistrations((prev) => prev.filter((reg) => reg._id !== deleteId));
             setFilteredRegistrations((prev) => prev.filter((reg) => reg._id !== deleteId));
             setShowDeleteModal(false);
@@ -85,7 +85,7 @@ const MyApply = () => {
                 additionalInfo: updatedRegistration.additionalInfo,
             };
 
-            await axios.put(`http://localhost:5000/registrations/${updatedRegistration._id}`, updatedData, {
+            await axios.put(`https://job-city-server-six.vercel.app/registrations/${updatedRegistration._id}`, updatedData, {
                 withCredentials: true,
             });
 

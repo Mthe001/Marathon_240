@@ -22,7 +22,7 @@ const UpdateMyMarathon = () => {
 
     useEffect(() => {
         // Fetch the marathon details based on the ID from the URL
-        axios.get(`http://localhost:5000/marathons/${id}`, { withCredentials: true })
+        axios.get(`https://job-city-server-six.vercel.app/marathons/${id}`, { withCredentials: true })
             .then((response) => {
                 const data = response.data;
                 setMarathon(data);
@@ -54,7 +54,7 @@ const UpdateMyMarathon = () => {
         const updatedData = { ...formData };
 
         // Update the marathon details
-        axios.put(`http://localhost:5000/marathons/${id}`, updatedData, {
+        axios.put(`https://job-city-server-six.vercel.app/marathons/${id}`, updatedData, {
             headers: {
                 'Content-Type': 'application/json',
             },

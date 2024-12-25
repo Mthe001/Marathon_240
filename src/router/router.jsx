@@ -49,7 +49,7 @@ const router = createBrowserRouter([
             {
                 path: '/all_marathon/:id',
                 element: <PrivateRoute><MarathonDetails /></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/marathons/${params.id}`)
+                loader: ({ params }) => fetch(`https://job-city-server-six.vercel.app/marathons/${params.id}`)
             },
             {
                 path: '/dashboard',

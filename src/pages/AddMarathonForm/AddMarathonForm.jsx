@@ -71,7 +71,7 @@ const AddMarathonForm = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/marathons', marathonDetails, {
+            const response = await axios.post('https://job-city-server-six.vercel.app/marathons', marathonDetails, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

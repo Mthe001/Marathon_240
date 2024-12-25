@@ -167,7 +167,7 @@ const AuthProvider = ({ children }) => {
                 });
 
                 const user = { email: currentUser.email };
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://job-city-server-six.vercel.app/jwt', user, { withCredentials: true })
                     .then(response => {
                         console.log('Log in token received:', response.data);
                         setLoading(false);
@@ -178,7 +178,7 @@ const AuthProvider = ({ children }) => {
                     });
             } else {
                 setUser(null);
-                axios.post('http://localhost:5000/logout', {}, { withCredentials: true })
+                axios.post('https://job-city-server-six.vercel.app/logout', {}, { withCredentials: true })
                     .then(response => {
                         console.log('User logged out', response.data);
                         setLoading(false);
