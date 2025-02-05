@@ -103,4 +103,4 @@ Follow me on social media channels for the latest updates, event news, and more!
 - **Instagram**: [@Mthe](https://www.instagram.com/mtheredwan/)
 - **Twitter**: [@Mthe001](https://x.com/redwan_mahin68)
 - **Facebook**: [Md Redwanul Haque](https://www.facebook.com/mtheredwan)
-- **Email**:[click me](mtheredwanulhaque@gmail.com)
+- **Email**: [mtheredwanulhaque](mtheredwanulhaque@gmail.com)
