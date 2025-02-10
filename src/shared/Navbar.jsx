@@ -37,6 +37,7 @@ const Navbar = () => {
     // Check if the current route is inside the Dashboard or its child routes
     const isDashboardPage = location.pathname.startsWith('/dashboard');
 
+
     const links = (
         <>
             <NavLink
@@ -52,19 +53,21 @@ const Navbar = () => {
                 </li>
             </NavLink>
 
-            {/* Show Dashboard link when the user is logged in */}
-            <NavLink
-                to="/dashboard"
-                className={({ isActive }) =>
-                    isActive
-                        ? 'text-blue-500 font-bold'
-                        : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
-                }
-            >
-                <li>
-                    <a>Dashboard</a>
-                </li>
-            </NavLink>
+            {/* Show Dashboard only when the user is logged in */}
+            {user && (
+                <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                        isActive
+                            ? 'text-blue-500 font-bold'
+                            : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
+                    }
+                >
+                    <li>
+                        <a>Dashboard</a>
+                    </li>
+                </NavLink>
+            )}
 
             <NavLink
                 to="/all_marathon"
@@ -78,8 +81,44 @@ const Navbar = () => {
                     <a>All Marathons</a>
                 </li>
             </NavLink>
+
+            {/* Show Contact and Blog only when the user is logged in */}
+            {user && (
+                <>
+                    <NavLink
+                        to="/contact"
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'text-blue-500 font-bold'
+                                : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
+                        }
+                    >
+                        <li>
+                            <a>Contact</a>
+                        </li>
+                    </NavLink>
+
+                    <NavLink
+                        to="/blog"
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'text-blue-500 font-bold'
+                                : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
+                        }
+                    >
+                        <li>
+                            <a>Blog</a>
+                        </li>
+                    </NavLink>
+                </>
+            )}
         </>
     );
+
+
+
+
+
 
     return (
         <div>
