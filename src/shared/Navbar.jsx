@@ -110,6 +110,18 @@ const Navbar = () => {
                             <a>Blog</a>
                         </li>
                     </NavLink>
+                    <NavLink
+                        to="/nutrition-guides"
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'text-blue-500 font-bold'
+                                : 'text-gray-700 hover:text-blue-500 dark:text-gray-50 dark:hover:text-blue-400'
+                        }
+                    >
+                        <li>
+                            <a>Nutrion Guide</a>
+                        </li>
+                    </NavLink>
                 </>
             )}
         </>
@@ -121,8 +133,8 @@ const Navbar = () => {
 
 
     return (
-        <div>
-            <div className="navbar bg-base-100 dark:bg-zinc-900 dark:text-gray-50">
+        <div className="w-full fixed top-0 left-0 z-50 navbar border-b-2 rounded-lg bg-base-100 dark:bg-zinc-900 dark:text-gray-50 shadow-md">
+            <div className="w-[95%] mx-auto navbar bg-base-100 dark:bg-zinc-900 dark:text-gray-50">
                 <div className="flex-1">
                     <Link className="btn btn-ghost text-xl" to="/">
                         <img src="https://i.ibb.co/xhCd4Tb/Screenshot-2024-12-22-114012-removebg-preview.png" alt="logo" className='w-20' />

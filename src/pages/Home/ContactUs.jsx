@@ -62,7 +62,7 @@ const ContactUs = () => {
     return (
         <div
             ref={containerRef}
-            className="contact-us bg-stone-100 dark:bg-zinc-900 my-10 rounded-lg py-12 px-6 sm:px-12 lg:px-24 shadow-xl dark:shadow-2xl transition-all duration-300"
+            className="contact-us bg-stone-100 dark:bg-zinc-900 my-10 rounded-lg py-12 lg:mt-14 px-6 sm:px-12 lg:px-24 shadow-xl dark:shadow-2xl transition-all duration-300"
         >
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 {/* Left Section: Text and Form */}

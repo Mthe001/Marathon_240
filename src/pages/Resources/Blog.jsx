@@ -36,7 +36,7 @@ const Blog = () => {
     }, []);
 
     return (
-        <div className="blog-container bg-gray-100 dark:bg-zinc-800 py-16 px-6 sm:px-8 md:px-16 lg:px-24">
+        <div className="blog-container bg-gray-100 lg:mt-20 dark:bg-zinc-800 py-16 px-6 sm:px-8 md:px-16 lg:px-24">
             <div className="container mx-auto text-center">
                 {/* Blog Title */}
                 <h2 className="blog-title text-4xl sm:text-5xl font-extrabold text-gray-800 dark:text-white mb-12">
