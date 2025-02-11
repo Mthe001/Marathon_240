@@ -4,6 +4,8 @@ import MarathonCampaign from './MarathonCampaign';
 import AboutUs from './AboutUs';
 import ContactUs from './ContactUs';
 import Carousel from './Carousel';
+import Faq from '../Contact/Faq';
+import RaceResults from '../Events/RaceResults';
 
 const Home = () => {
     useEffect(() => {
@@ -20,7 +22,10 @@ const Home = () => {
             </section>
             <MarathonCampaign />
             <AboutUs />
+            <RaceResults/>
+            <Faq />
             <ContactUs />
+            
         </div>
     );
 };
