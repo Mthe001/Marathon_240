@@ -12,6 +12,7 @@ const AllMarathon = () => {
     const itemsPerPage = 6;
 
     const fetchMarathons = async () => {
+        
         setLoading(true);
         try {
             const response = await axios.get('https://job-city-server-six.vercel.app/marathons', {
@@ -33,6 +34,9 @@ const AllMarathon = () => {
         }
     };
 
+    useEffect(() => {
+        document.title = 'All Marathon | Marathon 240'; // Set the title to "Marathon_240"
+    }, []); 
     useEffect(() => {
         fetchMarathons();
     }, [sortOrder, currentPage]);

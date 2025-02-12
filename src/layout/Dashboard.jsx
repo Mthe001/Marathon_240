@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom'; // Import useLocation for active route detection
 import { FaRunning, FaClipboardList, FaHome, FaBars } from 'react-icons/fa'; // Icons for the navigation links
 
 const Dashboard = () => {
+    useEffect(() => {
+        document.title = 'Dashboard | Marathon 240'; // Set the title to "Marathon_240"
+    }, []); 
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State to toggle the mobile menu
     const location = useLocation(); // Get current route
 

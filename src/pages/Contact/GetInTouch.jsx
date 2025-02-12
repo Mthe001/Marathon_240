@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { IoArrowBackCircleOutline } from 'react-icons/io5';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 const GetInTouch = () => {
+
+    useEffect(() => {
+        document.title = 'Get In touch | Marathon 240'; // Set the title to "Marathon_240"
+    }, []); 
+
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [errors, setErrors] = useState({ name: '', email: '', message: '' });
 
@@ -59,6 +64,7 @@ const GetInTouch = () => {
             setFormData({ name: '', email: '', message: '' });
         }
     };
+     
 
     return (
         <div className="min-h-screen bg-gray-100 mt-20 dark:bg-zinc-900 px-6 py-10 flex flex-col items-center">
