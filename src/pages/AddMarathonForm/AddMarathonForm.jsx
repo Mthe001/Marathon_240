@@ -229,7 +229,7 @@ const AddMarathonForm = () => {
                 <div className="sm:col-span-2">
                     <button
                         type="submit"
-                        className="btn w-full bg-green-500 hover:bg-green-600 text-white shadow-md"
+                        className="btn w-full bg-blue-500 hover:bg-blue-600 text-white shadow-md"
                     >
                         Create Marathon
                     </button>
