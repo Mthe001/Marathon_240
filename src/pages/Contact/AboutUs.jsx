@@ -10,7 +10,7 @@ const AboutUs = () => {
     };
 
     return (
-        <div className="bg-gray-100 dark:bg-zinc-900 px-6 py-10 flex flex-col items-center">
+        <div className="bg-gray-100 mt-20 dark:bg-zinc-900 px-6 py-10 flex flex-col items-center">
 
             <div className="card w-full max-w-7xl bg-white dark:bg-zinc-900 shadow-lg rounded-lg p-8">
                 <div>
