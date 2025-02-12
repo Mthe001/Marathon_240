@@ -61,7 +61,7 @@ const GetInTouch = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 lg:mt-20 dark:bg-zinc-900 px-6 py-10 flex flex-col items-center">
+        <div className="min-h-screen bg-gray-100 mt-20 dark:bg-zinc-900 px-6 py-10 flex flex-col items-center">
             <div className="w-full max-w-5xl bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-6">
                 {/* Back Button */}
                 <div className="flex items-center justify-between mb-6">

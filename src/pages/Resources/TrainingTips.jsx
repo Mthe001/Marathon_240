@@ -36,7 +36,7 @@ const TrainingTips = () => {
     }, []);
 
     return (
-        <div className="training-tips-container bg-gray-100 lg:mt-20 dark:bg-stone-900 py-16 px-6 sm:px-8 md:px-16 lg:px-24">
+        <div className="training-tips-container bg-gray-100 mt-20 dark:bg-stone-900 py-16 px-6 sm:px-8 md:px-16 lg:px-24">
             <div className="container mx-auto text-center">
                 {/* Training Tips Title */}
                 <h2 className="training-title text-4xl sm:text-5xl font-extrabold text-gray-800 dark:text-white mb-12">

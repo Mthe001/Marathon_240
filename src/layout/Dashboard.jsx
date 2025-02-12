@@ -6,7 +6,7 @@ const Dashboard = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State to toggle the mobile menu
 
     return (
-        <div className="min-h-screen lg:mt-20 flex flex-col bg-white dark:bg-zinc-900 text-black dark:text-gray-50">
+        <div className="min-h-screen mt-20 flex flex-col bg-white dark:bg-zinc-900 text-black dark:text-gray-50">
             {/* Main Navbar */}
             <div className="bg-primary dark:bg-zinc-900 text-white shadow-lg w-full">
                 <div className="container mx-auto flex items-center justify-between p-4">

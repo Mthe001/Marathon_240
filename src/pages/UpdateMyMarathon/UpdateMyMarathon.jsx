@@ -100,7 +100,7 @@ const UpdateMyMarathon = () => {
     }
 
     return (
-        <div className="p-6 w-10/12 mx-auto lg:mt-20 bg-white dark:bg-zinc-800 rounded-lg shadow-lg">
+        <div className="p-6 w-10/12 mx-auto mt-20 bg-white dark:bg-zinc-800 rounded-lg shadow-lg">
             {/* Back Button */}
             <button
                 className="flex items-center text-blue-500 hover:text-blue-700 dark:text-blue-400 mb-4"

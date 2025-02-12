@@ -60,11 +60,15 @@ const AllMarathon = () => {
 
     if (loading) {
         return (
-            <div className="text-center text-lg font-semibold">
-                <span className="loading loading-infinity loading-lg"></span>
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="flex flex-col items-center">
+                    <span className="loading loading-infinity loading-lg text-blue-500"></span>
+                    <p className="mt-4 text-lg font-semibold text-gray-700 dark:text-gray-300">Loading marathons...</p>
+                </div>
             </div>
         );
     }
+
 
     if (error) {
         return <div className="text-center text-red-600">{error}</div>;

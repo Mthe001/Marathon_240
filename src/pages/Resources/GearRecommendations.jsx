@@ -29,7 +29,7 @@ const GearRecommendations = () => {
     }, []);
 
     return (
-        <div className="gear-recommendations-container lg:mt-20 bg-gray-100 dark:bg-zinc-800 py-16 px-6 sm:px-8 md:px-16 lg:px-24">
+        <div className="gear-recommendations-container mt-20 bg-gray-100 dark:bg-zinc-800 py-16 px-6 sm:px-8 md:px-16 lg:px-24">
             <div className="container mx-auto text-center">
                 {/* Title */}
                 <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-800 dark:text-white mb-12">

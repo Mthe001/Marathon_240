@@ -36,7 +36,7 @@ const NutritionsGuides = () => {
     }, []);
 
     return (
-        <div className="nutrition-guides-container bg-gray-100 lg:mt-20 dark:bg-zinc-800 py-16 px-6 sm:px-8 md:px-16 lg:px-24">
+        <div className="nutrition-guides-container bg-gray-100 mt-20 dark:bg-zinc-800 py-16 px-6 sm:px-8 md:px-16 lg:px-24">
             <div className="container mx-auto text-center">
                 {/* Nutrition Guides Title */}
                 <h2 className="nutrition-title text-4xl sm:text-5xl font-extrabold text-gray-800 dark:text-white mb-12">

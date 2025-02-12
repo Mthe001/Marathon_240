@@ -111,7 +111,7 @@ const MarathonDetails = () => {
 
 
     return (
-        <div className="marathon-details p-8 bg-white dark:bg-zinc-800 rounded-lg shadow-2xl w-10/12  md:w-9/12 lg:w-9/12 mx-auto mt-8 my-24">
+        <div className="marathon-details p-8 mt-20 bg-white dark:bg-zinc-800 rounded-lg shadow-2xl w-10/12  md:w-9/12 lg:w-9/12 mx-auto  my-24">
             <div className="mb-4">
                 <button
                     onClick={() => navigate(-1)} // Navigate back to the previous page
