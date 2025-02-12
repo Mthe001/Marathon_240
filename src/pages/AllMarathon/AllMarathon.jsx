@@ -81,7 +81,7 @@ const AllMarathon = () => {
     return (
         <div>
             {/* Sort Options */}
-            <div className="flex justify-end p-8">
+            <div className="flex justify-end mt-20 p-8">
                 <label htmlFor="sortOrder" className="mr-4 text-lg font-semibold text-gray-800 dark:text-gray-200">
                     Sort by:
                 </label>
@@ -97,12 +97,12 @@ const AllMarathon = () => {
             </div>
 
             {/* Show Marathon List */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+            <div className="grid grid-cols-1 lg:w-8/12 mx-auto md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
                 {Array.isArray(marathons) && marathons.length > 0 ? (
                     marathons.map((marathon) => (
                         <div
                             key={marathon._id}
-                            className="card bg-white dark:bg-zinc-800 shadow-lg rounded-lg overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-xl p-5 border-2 border-green-500 dark:border-green-700"
+                            className="card bg-white dark:bg-zinc-800 shadow-lg rounded-lg overflow-hidden h-[95%] transition-transform duration-300 transform hover:scale-105 hover:shadow-xl p-5 border-2 border-green-500 dark:border-green-700"
                         >
                             <img
                                 src={marathon.imageUrl}

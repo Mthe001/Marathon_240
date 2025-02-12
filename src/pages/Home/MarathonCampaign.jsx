@@ -64,7 +64,7 @@ const MarathonCampaign = () => {
             <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">
                 Upcoming  Marathon
             </h2>
-            <div className="w-8/12 mx-auto grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+            <div className="w-12/12 lg:w-8/12 md:w-10/12 mx-auto grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                 {marathons.map((marathon) => (
                     <div
                         key={marathon.id}

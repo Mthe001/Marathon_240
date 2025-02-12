@@ -114,7 +114,7 @@ const AddMarathonForm = () => {
             <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-black dark:text-gray-200">
                 Create Marathon Event
             </h2>
-            <form ref={formRef} onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <form ref={formRef} onSubmit={handleSubmit} className=" grid grid-cols-1 gap-6 sm:grid-cols-2">
                 {/* User Email */}
                 <div className="form-control">
                     <label className="label font-semibold text-sm sm:text-base text-black dark:text-gray-300">Your Email:</label>
