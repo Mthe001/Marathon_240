@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Outlet, Link } from 'react-router-dom'; // Import Outlet for rendering nested routes
+import { Outlet, Link, useLocation } from 'react-router-dom'; // Import useLocation for active route detection
 import { FaRunning, FaClipboardList, FaHome, FaBars } from 'react-icons/fa'; // Icons for the navigation links
 
 const Dashboard = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State to toggle the mobile menu
+    const location = useLocation(); // Get current route
+
+    // Function to check if a link is active
+    const isActive = (path) => location.pathname === path ? "text-blue-500 font-bold" : "text-gray-700 dark:text-gray-300";
 
     return (
         <div className="min-h-screen mt-20 flex flex-col bg-white dark:bg-zinc-900 text-black dark:text-gray-50">
@@ -21,9 +25,8 @@ const Dashboard = () => {
 
                     {/* Desktop Navbar */}
                     <ul className="hidden md:flex space-x-6">
-
-                        <li><Link to="/about-us" className="hover:underline">About Us</Link></li>
-                        <li><Link to="/contact" className="hover:underline">Contact</Link></li>
+                        <li><Link to="/about-us" className="text-blue-400 hover:underline">About Us</Link></li>
+                        <li><Link to="/contact" className="text-blue-400 hover:underline">Contact</Link></li>
                     </ul>
                 </div>
             </div>
@@ -32,8 +35,8 @@ const Dashboard = () => {
             {isMenuOpen && (
                 <div className="md:hidden bg-gray-800 text-white p-4">
                     <ul className="space-y-4">
-                        <li><Link to="/about-us" className="hover:underline">About Us</Link></li>
-                        <li><Link to="/contact" className="hover:underline">Contact</Link></li>
+                        <li><Link to="/about-us" className="text-blue-400 hover:underline">About Us</Link></li>
+                        <li><Link to="/contact" className="text-blue-400 hover:underline">Contact</Link></li>
                     </ul>
                 </div>
             )}
@@ -46,7 +49,7 @@ const Dashboard = () => {
                         <li>
                             <Link
                                 to="/dashboard/add_marathon"
-                                className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all"
+                                className={`flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all ${isActive("/dashboard/add_marathon")}`}
                             >
                                 <FaRunning className="w-5 h-5" />
                                 <span>Add Marathon</span>
@@ -55,7 +58,7 @@ const Dashboard = () => {
                         <li>
                             <Link
                                 to="/dashboard/my_apply"
-                                className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all"
+                                className={`flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all ${isActive("/dashboard/my_apply")}`}
                             >
                                 <FaClipboardList className="w-5 h-5" />
                                 <span>My Apply</span>
@@ -64,7 +67,7 @@ const Dashboard = () => {
                         <li>
                             <Link
                                 to="/dashboard/my_marathon"
-                                className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all"
+                                className={`flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all ${isActive("/dashboard/my_marathon")}`}
                             >
                                 <FaHome className="w-5 h-5" />
                                 <span>My Marathons</span>
@@ -77,7 +80,7 @@ const Dashboard = () => {
                         <li>
                             <Link
                                 to="/dashboard/add_marathon"
-                                className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all"
+                                className={`flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all ${isActive("/dashboard/add_marathon")}`}
                             >
                                 <FaRunning className="w-5 h-5" />
                                 <span>Add Marathon</span>
@@ -86,7 +89,7 @@ const Dashboard = () => {
                         <li>
                             <Link
                                 to="/dashboard/my_apply"
-                                className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all"
+                                className={`flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all ${isActive("/dashboard/my_apply")}`}
                             >
                                 <FaClipboardList className="w-5 h-5" />
                                 <span>My Apply</span>
@@ -95,7 +98,7 @@ const Dashboard = () => {
                         <li>
                             <Link
                                 to="/dashboard/my_marathon"
-                                className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all"
+                                className={`flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-zinc-700 transition-all ${isActive("/dashboard/my_marathon")}`}
                             >
                                 <FaHome className="w-5 h-5" />
                                 <span>My Marathons</span>
