@@ -10,7 +10,7 @@ const Dashboard = () => {
             {/* Main Navbar */}
             <div className="bg-primary dark:bg-zinc-900 text-white shadow-lg w-full">
                 <div className="container mx-auto flex items-center justify-between p-4">
-                    <Link className="text-2xl font-bold">Dashboard</Link>
+                    <Link className="text-2xl text-blue-500 font-bold">Dashboard</Link>
 
                     {/* Mobile Hamburger Button */}
                     <div className="md:hidden">
